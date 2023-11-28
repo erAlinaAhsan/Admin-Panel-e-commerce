@@ -8,4 +8,4 @@ export async function fetchData(url) {
   } catch (error) {
     throw new Error("Error fetching data");
   }
-}
+} 

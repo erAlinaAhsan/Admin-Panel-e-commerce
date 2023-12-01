@@ -6,15 +6,13 @@
       <div class="wrapper-link flex gap-4 text-sm text-gray-400">
         <router-link to="#">Terms and conditions</router-link>
         <router-link to="#">Privacy Policy</router-link>
-        <router-link to="#">Licensing</router-link>
+        <router-link to="#">Licence</router-link>
         <router-link to="#">Cookie Policy</router-link>
         <router-link to="#">Contact</router-link>
       </div>
     </div>
     <footer class="w-full box-border p-5 mt-3 text-center">
-      <p class="text-sm dark:text-gray-400">
-        Windzo Made by ❤️ Mohammad Sahrullah
-      </p>
+      <p class="text-sm dark:text-gray-400">Made by ❤️ Hyperzod</p>
     </footer>
   </div>
 </template>

@@ -2,10 +2,7 @@
   <!-- Search component Alert with name of type,  press Ctrl + F -->
 
   <div class="alert h-auto p-3">
-    <nav
-      class="flex"
-      aria-label="Breadcrumb"
-    >
+    <nav class="flex" aria-label="Breadcrumb">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a
@@ -138,40 +135,40 @@
         </div>
         <div class="wrapper-alert grid grid-cols-1 gap-3 mt-3">
           <alert class="bg-blue-500 text-white">
-            <template v-slot:heading> Windzo </template>
+            <template v-slot:heading> Qart </template>
             <template v-slot:content>
               Hello iam primary and can also info alert
             </template>
           </alert>
           <alert class="bg-green-500 text-white">
-            <template v-slot:heading> Windzo </template>
+            <template v-slot:heading> Qart </template>
             <template v-slot:content> Hello iam alert success </template>
           </alert>
           <alert class="bg-orange-500 text-white">
-            <template v-slot:heading> Windzo </template>
+            <template v-slot:heading> Qart </template>
             <template v-slot:content> Hello iam alert warning</template>
           </alert>
           <alert class="bg-red-500 text-white">
-            <template v-slot:heading> Windzo </template>
+            <template v-slot:heading> Qart</template>
             <template v-slot:content> Hello iam alert danger</template>
           </alert>
 
           <alert class="bg-gray-700 text-white">
-            <template v-slot:heading> Windzo </template>
+            <template v-slot:heading> Qart </template>
             <template v-slot:content> Hello iam alert dark </template>
           </alert>
           <alert class="bg-gray-300 text-gray-800">
-            <template v-slot:heading> Windzo </template>
+            <template v-slot:heading> Qart </template>
             <template v-slot:content> Hello iam alert secondary </template>
           </alert>
 
           <alert class="bg-gray-100 text-gray-800">
-            <template v-slot:heading> Windzo </template>
+            <template v-slot:heading> Qart </template>
             <template v-slot:content> Hello iam alert light </template>
           </alert>
 
           <alert class="bg-primary text-white">
-            <template v-slot:heading> Windzo </template>
+            <template v-slot:heading> Qart </template>
             <template v-slot:content> Hello iam alert custom colors </template>
           </alert>
         </div>
@@ -282,11 +279,7 @@
           >
             <template v-slot:content> Hello iam alert warning</template>
           </alert>
-          <alert
-            class="bg-red-500 text-white"
-            :demo="true"
-            :actionClose="true"
-          >
+          <alert class="bg-red-500 text-white" :demo="true" :actionClose="true">
             <template v-slot:content> Hello iam alert danger</template>
           </alert>
 
@@ -313,11 +306,7 @@
             <template v-slot:content> Hello iam alert light </template>
           </alert>
 
-          <alert
-            class="bg-primary text-white"
-            :demo="true"
-            :actionClose="true"
-          >
+          <alert class="bg-primary text-white" :demo="true" :actionClose="true">
             <template v-slot:content> Hello iam alert custom colors </template>
           </alert>
         </div>
@@ -354,10 +343,7 @@
             <template v-slot:content> Hello iam alert light </template>
           </alert>
 
-          <alert
-            class="bg-indigo-200/80 text-indigo-800"
-            :actionClose="false"
-          >
+          <alert class="bg-indigo-200/80 text-indigo-800" :actionClose="false">
             <template v-slot:content> Hello iam alert custom colors </template>
           </alert>
         </div>
@@ -367,12 +353,12 @@
 </template>
 
 <script>
-  import Alert from "@/components/Alert.vue";
-  import { Icon } from "@iconify/vue";
-  export default {
-    components: {
-      Alert,
-      Icon,
-    },
-  };
+import Alert from "@/components/Alert.vue";
+import { Icon } from "@iconify/vue";
+export default {
+  components: {
+    Alert,
+    Icon,
+  },
+};
 </script>

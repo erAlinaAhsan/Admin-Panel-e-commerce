@@ -2,10 +2,7 @@
   <!-- Search component Breadcumb with name of type  press Ctrl + F -->
 
   <div class="beadcumb lg:h-screen h-auto p-3">
-    <nav
-      class="flex"
-      aria-label="Breadcrumb"
-    >
+    <nav class="flex" aria-label="Breadcrumb">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <a
@@ -88,10 +85,7 @@
         </h2>
         <div class="wrapper-breadcumb mt-5">
           <!-- default breadcumb -->
-          <nav
-            class="flex"
-            aria-label="Breadcrumb"
-          >
+          <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
               <li class="inline-flex items-center">
                 <a
@@ -148,7 +142,7 @@
                   </svg>
                   <span
                     class="ml-1 text-sm font-medium text-gray-400 md:ml-2 dark:text-gray-500"
-                    >Windzo</span
+                    >Company</span
                   >
                 </div>
               </li>
@@ -222,7 +216,7 @@
                   </svg>
                   <span
                     class="ml-1 text-sm font-medium text-gray-400 md:ml-2 dark:text-gray-500"
-                    >Windzo</span
+                    >Company</span
                   >
                 </div>
               </li>

@@ -6,15 +6,8 @@
           <div
             class="form-body max-w-xl mx-auto lg:p-20 p-8 lg:mt-10 mt-5 space-y-8"
           >
-            <div
-              class="form-head cursor-pointer"
-              @click="$router.push('/')"
-            >
-              <img
-                src="../../../assets/logo/logo.svg"
-                alt=""
-                class="w-10"
-              />
+            <div>
+              <img src="../../../assets/logo/logo.svg" alt="" class="w-10" />
             </div>
             <div class="space-y-3">
               <h2 class="dark:text-white font-semibold text-gray-800 text-4xl">
@@ -33,9 +26,9 @@
                 src="../../../assets/logo/google-logo.svg"
                 alt=""
               />
-              <p class="mt-1 dark:text-white text-gray-700">
+              <a href="#" class="mt-1 dark:text-white text-gray-700">
                 Sign up with Google
-              </p>
+              </a>
             </button>
             <span class="flex items-center justify-center space-x-2">
               <span class="h-px dark:bg-gray-600 bg-gray-200 w-full"></span>
@@ -46,6 +39,7 @@
               <div class="relative z-0 w-full mb-6 group">
                 <input
                   type="text"
+                  v-model="userName"
                   name="floating_text"
                   id="floating_text"
                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
@@ -61,6 +55,7 @@
               <div class="relative z-0 w-full mb-6 group">
                 <input
                   type="email"
+                  v-model="email"
                   name="floating_email"
                   id="floating_email"
                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
@@ -76,6 +71,7 @@
               <div class="relative z-0 w-full mb-6 group">
                 <input
                   type="password"
+                  v-model="password"
                   name="floating_password"
                   id="floating_password"
                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
@@ -91,6 +87,7 @@
               <div class="relative z-0 w-full mb-6 group">
                 <input
                   type="password"
+                  v-model="passwordConfirm"
                   name="floating_password"
                   id="floating_password"
                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
@@ -125,6 +122,7 @@
 
             <button
               class="text-white bg-primary hover:bg-primary/80 p-3 w-full rounded-md"
+              @click="redirectToDashboard"
             >
               Submit, and Register
             </button>
@@ -145,5 +143,54 @@
 </template>
 
 <script>
-  export default {};
+import swal from "sweetalert2";
+// import axios from "axios";
+export default {
+  props: ["baseURL"],
+  data() {
+    return {
+      email: null,
+      userName: null,
+      password: null,
+      passwordConfirm: null,
+    };
+  },
+  methods: {
+    async register(e) {
+      e.preventDefault();
+      if (this.password === this.passwordConfirm) {
+        // Call register API (uncomment this part when you have the actual API)
+        // const user = {
+        //   email: this.email,
+        //   userName: this.userName,
+        //   password: this.password,
+        // };
+        // await axios.post(`${this.baseURL}user/register`, user).then(() => {
+        //   this.redirectToDashboard();
+        // });
+
+        this.redirectToDashboard();
+      } else {
+        this.showAlert();
+      }
+    },
+    showAlert() {
+      this.$swal.fire({
+        text: "Password didn't match!",
+        icon: "error",
+      });
+    },
+    redirectToDashboard() {
+      this.$router.push("/").then(() => {
+        this.showLoginSuccessAlert();
+      });
+    },
+    showLoginSuccessAlert() {
+      this.$swal.fire({
+        text: "Registration successful!",
+        icon: "success",
+      });
+    },
+  },
+};
 </script>

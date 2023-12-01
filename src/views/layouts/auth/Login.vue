@@ -97,7 +97,6 @@
 
             <button
               class="text-white bg-primary hover:bg-primary/80 p-3 w-full rounded-md"
-              @click="login"
             >
               Login, to continue
             </button>
@@ -141,18 +140,21 @@ export default {
           password: this.password,
         });
 
-        if (response.data.success) {
+        const token = response.data.token;
+
+        if (token) {
+          localStorage.setItem("authToken", token);
           this.redirectToDashboard();
         } else {
           this.showLoginErrorAlert();
         }
       } catch (error) {
-        console.error(error);
+        console.error("API Error:", error);
         this.showLoginErrorAlert();
       }
     },
     redirectToDashboard() {
-      this.$router.push("/dashboard").then(() => {
+      this.$router.push("/").then(() => {
         this.showLoginSuccessAlert();
       });
     },

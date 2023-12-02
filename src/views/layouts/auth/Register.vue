@@ -2,7 +2,7 @@
   <div class="w-full h-screen">
     <div class="flex shadow bg-waves rounded-md h-screen">
       <div class="bg-white dark:bg-gray-900 w-full">
-        <form>
+        <form @submit.prevent="handleSubmit">
           <div
             class="form-body max-w-xl mx-auto lg:p-20 p-8 lg:mt-10 mt-5 space-y-8"
           >
@@ -143,52 +143,55 @@
 </template>
 
 <script>
-import swal from "sweetalert2";
-// import axios from "axios";
+import axios from "axios";
+
 export default {
-  props: ["baseURL"],
+  name: "Register",
   data() {
     return {
-      email: null,
-      userName: null,
-      password: null,
-      passwordConfirm: null,
+      baseURL: "https://ecommerce.hyperzod.dev/api/admin/register",
+      userName: "",
+      email: "",
+      password: "",
     };
   },
   methods: {
-    async register(e) {
-      e.preventDefault();
-      if (this.password === this.passwordConfirm) {
-        // Call register API (uncomment this part when you have the actual API)
-        // const user = {
-        //   email: this.email,
-        //   userName: this.userName,
-        //   password: this.password,
-        // };
-        // await axios.post(`${this.baseURL}user/register`, user).then(() => {
-        //   this.redirectToDashboard();
-        // });
+    async handleSubmit() {
+      try {
+        const response = await axios.post(this.baseURL, {
+          userName: this.name,
+          email: this.email,
+          password: this.password,
+        });
 
-        this.redirectToDashboard();
-      } else {
-        this.showAlert();
+        const token = response.data.token;
+
+        if (token) {
+          localStorage.setItem("authToken", token);
+          this.redirectToDashboard();
+        } else {
+          this.showRegisterErrorAlert();
+        }
+      } catch (error) {
+        console.error("API Error:", error);
+        this.showRegisterErrorAlert();
       }
-    },
-    showAlert() {
-      this.$swal.fire({
-        text: "Password didn't match!",
-        icon: "error",
-      });
     },
     redirectToDashboard() {
       this.$router.push("/").then(() => {
-        this.showLoginSuccessAlert();
+        this.showRegisterSuccessAlert();
       });
     },
-    showLoginSuccessAlert() {
+    showRegisterSuccessAlert() {
       this.$swal.fire({
-        text: "Registration successful!",
+        text: "Register Success",
         icon: "success",
+      });
+    },
+    showRegisterErrorAlert() {
+      this.$swal.fire({
+        text: "Invalid email or password",
+        icon: "error",
       });
     },
   },

@@ -39,21 +39,21 @@
 </template>
 
 <script>
-  import { Icon } from "@iconify/vue";
-  export default {
-    data() {
-      return {
-        isOpen: false,
-      };
-    },
+import { Icon } from "@iconify/vue";
+export default {
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
 
-    methods: {
-      toggleAccordion() {
-        this.isOpen = !this.isOpen;
-      },
+  methods: {
+    toggleAccordion() {
+      this.isOpen = !this.isOpen;
     },
-    components: {
-      Icon,
-    },
-  };
+  },
+  components: {
+    Icon,
+  },
+};
 </script>

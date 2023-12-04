@@ -154,7 +154,7 @@ export default {
       }
     },
     redirectToDashboard() {
-      this.$router.push("/").then(() => {
+      this.$router.push("/dashboard").then(() => {
         this.showLoginSuccessAlert();
       });
     },

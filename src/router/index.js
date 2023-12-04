@@ -29,7 +29,7 @@ var appname = " - Qart Dashboard Admin Template";
 const routes = [
   // Routes
   {
-    path: "/",
+    path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
     meta: { title: "Dashboard " + appname },
@@ -94,7 +94,7 @@ const routes = [
   },
 
   {
-    path: "/auth/login",
+    path: "/",
     name: "Login",
     component: Login,
     meta: { title: "Login" + appname, hideNav: true },

@@ -172,12 +172,7 @@
                       >
                         Login
                       </router-link>
-                      <router-link
-                        to="/auth/register"
-                        class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                      >
-                        Register
-                      </router-link>
+
                       <router-link
                         to="/auth/forgot-password"
                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"

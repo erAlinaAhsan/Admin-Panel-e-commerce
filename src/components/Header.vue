@@ -148,7 +148,7 @@
               />
             </div>
             <div class="text-left lg:block md:block hidden">
-              <h2 class="dark:text-white text-gray-800">Hi, Er Alina</h2>
+              <h2 class="dark:text-white text-gray-800">Hi,{{ name }}</h2>
               <p class="text-xs text-gray-400 dark:text-gray-500">
                 Frontend Developer
               </p>
@@ -166,28 +166,13 @@
             class="block absolute right-10 mt-12 z-50 w-52 border dark:border-gray-700 bg-white dark:bg-gray-800 rounded divide-y dark:divide-gray-700 divide-gray-100 shadow"
           >
             <div class="py-3 px-4 text-sm text-gray-900 dark:text-gray-200">
-              <div>Register As</div>
-              <div class="font-medium truncate">Er Alina Ahsan</div>
+              <div>Admin:</div>
+              <div class="font-medium truncate">{{ name }}</div>
             </div>
             <ul
               class="py-1 text-sm text-gray-700 dark:text-gray-200"
               aria-labelledby="dropdownSmallButton"
             >
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 px-4 hover:bg-primary hover:text-white"
-                  >User Profile</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 px-4 hover:bg-primary hover:text-white"
-                  >Settings</a
-                >
-              </li>
-
               <li>
                 <a
                   href="https://github.com/erAlinaAhsan"
@@ -196,29 +181,22 @@
                 >
               </li>
             </ul>
+
             <div class="py-1">
               <a
                 href="#"
                 class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white"
-                @click="$router.push('/auth/register')"
-                >Sign Up</a
+                @click="$router.push('/')"
+                >Log in</a
               >
+
               <div class="py-1">
                 <a
                   href="#"
                   class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white"
-                  @click="$router.push('/auth/login')"
-                  >Log in</a
+                  @click="$router.push('/')"
+                  >Log out</a
                 >
-
-                <div class="py-1">
-                  <a
-                    href="#"
-                    class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white"
-                    @click="$router.push('/auth/register')"
-                    >Sign out</a
-                  >
-                </div>
               </div>
             </div>
           </div>
@@ -232,11 +210,14 @@
 import { Icon } from "@iconify/vue";
 import { fullscreen } from "@/helper/fullscreen";
 import { setDarkMode, loadDarkMode } from "@/helper/theme";
-import Register from "../views/layouts/auth/Register.vue";
 
 export default {
+  props: {
+    name: String,
+  },
   data() {
     return {
+      baseURL: "https://ecommerce.hyperzod.dev/api/admin/login",
       menu: false,
       darkMode: false,
       notification: false,
@@ -277,6 +258,9 @@ export default {
     },
   },
   methods: {
+    setName(name) {
+      this.name = name;
+    },
     fullscreen,
     setDarkMode,
     loadDarkMode,

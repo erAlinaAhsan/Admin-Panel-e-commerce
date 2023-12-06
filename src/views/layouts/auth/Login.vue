@@ -100,16 +100,6 @@
             >
               Login, to continue
             </button>
-            <p class="dark:text-white text-center text-gray-700">
-              Don't have an account?
-              <button
-                type="button"
-                @click="$router.push('/auth/register')"
-                class="ml-2 text-primary"
-              >
-                Register here
-              </button>
-            </p>
           </div>
         </form>
       </div>
@@ -118,6 +108,7 @@
       ></div>
     </div>
   </div>
+  <Header :name="name" @setName="setName" />
 </template>
 
 <script>
@@ -130,6 +121,7 @@ export default {
       baseURL: "https://ecommerce.hyperzod.dev/api/admin/login",
       email: "",
       password: "",
+      name: "",
     };
   },
   methods: {
@@ -169,6 +161,9 @@ export default {
         text: "Invalid email or password",
         icon: "error",
       });
+    },
+    setName(name) {
+      this.name = name;
     },
   },
 };

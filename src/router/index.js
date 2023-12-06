@@ -2,6 +2,15 @@ import { createRouter, createWebHistory } from "vue-router";
 
 // Default Pages
 import Dashboard from "../views/Dashboard.vue";
+import Product from '../views/Product/Product.vue'
+import AddProduct from '../views/Product/AddProduct.vue'
+import EditProduct from '../views/Product/EditProduct.vue'
+import ShowDetails from '../views/Product/ShowDetails.vue'
+import Wishlist from '../views/Product/Wishlist.vue'
+
+
+import ManageCategory from '../views/Category/ManageCategory.vue'
+import ListProducts from '../views/Category/ListProducts.vue'
 // Component Pages
 import Valert from "../views/components/alert.vue";
 import Vaccrodion from "../views/components/accordion.vue";
@@ -12,7 +21,7 @@ import Vcard from "../views/components/card.vue";
 import Vdropdown from "../views/components/dropdown.vue";
 import Vmodal from "../views/components/modal.vue";
 import Login from "../views/layouts/auth/Login.vue";
-import Register from "../views/layouts/auth/Register.vue";
+
 import ForgotPassword from "../views/layouts/auth/forgot-password.vue";
 
 // layouts
@@ -33,6 +42,49 @@ const routes = [
     name: "Dashboard",
     component: Dashboard,
     meta: { title: "Dashboard " + appname },
+  },
+  {
+    path: '/product',
+    name: 'Product',
+    component: Product
+  },
+  {
+    path: '/admin/product',
+    name: 'AdminProduct',
+    component: Product
+  },
+  {
+    path: '/admin/product/add',
+    name: 'AddProduct',
+    component: AddProduct
+  },
+  {
+    path: '/admin/product/:id',
+    name: 'EditProduct',
+    component: EditProduct,
+  },
+  {
+    path: '/product/show/:id',
+    name: 'ShowDetails',
+    component: ShowDetails
+  },
+  //Category routes
+
+
+  {
+    path: '/admin/category/manage',
+    name: 'ManageCategory',
+    component: ManageCategory
+  },
+  {
+    path: '/category/show/:id',
+    name: 'ListProducts',
+    component: ListProducts
+  },
+  {
+    path: '/wishlist',
+    name: 'Wishlist',
+    component: Wishlist
   },
 
   // Components based Routes
@@ -99,12 +151,8 @@ const routes = [
     component: Login,
     meta: { title: "Login" + appname, hideNav: true },
   },
-  {
-    path: "/auth/register",
-    name: "Register",
-    component: Register,
-    meta: { title: "Register" + appname, hideNav: true },
-  },
+
+
   {
     path: "/auth/forgot-password",
     name: "ForgotPassword",

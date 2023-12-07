@@ -11,19 +11,6 @@
             Dashboard
           </h1>
         </div>
-        <div class="flex gap-2">
-          <button
-            class="bg-white dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-2 px-5"
-          >
-            New view
-          </button>
-          <button
-            class="bg-primary border flex gap-2 text-white hover:bg-primary/80 dark:border-gray-700 rounded py-3 px-5"
-          >
-            <span class="icon text-2xl"><Icon icon="ic:twotone-plus" /></span>
-            <span class="text"> Manage Categories</span>
-          </button>
-        </div>
       </div>
     </div>
 
@@ -62,7 +49,9 @@
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
             ₹23.423.009
           </p>
-          <h2 class="font-normal text-gray-400 text-md mt-1">Total Payouts</h2>
+          <h2 class="font-normal text-gray-400 text-md mt-1">
+            Total Categories
+          </h2>
         </div>
       </div>
       <!-- end card -->
@@ -96,7 +85,7 @@
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
             256
           </p>
-          <h2 class="font-normal text-gray-400 text-md mt-1">Total Sales</h2>
+          <h2 class="font-normal text-gray-400 text-md mt-1">Total Products</h2>
         </div>
       </div>
       <!-- end card -->
@@ -172,13 +161,13 @@
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
             7230
           </p>
-          <h2 class="font-normal text-gray-400 text-md mt-1">Total Visit</h2>
+          <h2 class="font-normal text-gray-400 text-md mt-1">Total Orders</h2>
         </div>
       </div>
       <!-- end card -->
     </div>
     <!-- end wrapper card -->
-    <div class="mt-2 lg:flex block lg:gap-2 relative">
+    <!-- <div class="mt-2 lg:flex block lg:gap-2 relative">
       <div
         class="bg-white dark:bg-gray-800 p-0 lg:w-3/4 w-full rounded-md box-border border dark:border-gray-700"
       >
@@ -542,9 +531,7 @@
         </select>
         <button class="uppercase border-b border-red-600 text-red-600">
           Transaction Report
-        </button>
-      </div>
-    </div>
+        </button> -->
   </div>
 </template>
 
@@ -554,191 +541,189 @@ import { Icon } from "@iconify/vue";
 
 export default {
   name: "Dashboard",
-  data() {
-    return {
-      // for more guide apexchart.js
-      // https://apexcharts.com/docs/chart-types/line-chart/
+  // data() {
+  //   return {
+  // for more guide apexchart.js
+  // https://apexcharts.com/docs/chart-types/line-chart/
 
-      // chart data area
-      optionsArea: {
-        xaxis: {
-          categories: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
-        },
-        fontFamily: "Segoe UI, sans-serif",
-        stroke: {
-          curve: "straight",
-        },
-        chart: {
-          toolbar: {
-            show: true,
-          },
-          zoom: {
-            enabled: false,
-          },
-          sparkline: {
-            enabled: true,
-          },
-        },
-        markers: {
-          size: 0,
-        },
-        yaxis: {
-          show: false,
-        },
-        fill: {
-          type: "gradient",
-          gradient: {
-            shadeIntensity: 0,
-            opacityFrom: 0.2,
-            opacityTo: 0.5,
-            stops: [0, 90, 100],
-          },
-        },
-      },
+  // chart data area
+  //     optionsArea: {
+  //       xaxis: {
+  //         categories: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
+  //       },
+  //       fontFamily: "Segoe UI, sans-serif",
+  //       stroke: {
+  //         curve: "straight",
+  //       },
+  //       chart: {
+  //         toolbar: {
+  //           show: true,
+  //         },
+  //         zoom: {
+  //           enabled: false,
+  //         },
+  //         sparkline: {
+  //           enabled: true,
+  //         },
+  //       },
+  //       markers: {
+  //         size: 0,
+  //       },
+  //       yaxis: {
+  //         show: false,
+  //       },
+  //       fill: {
+  //         type: "gradient",
+  //         gradient: {
+  //           shadeIntensity: 0,
+  //           opacityFrom: 0.2,
+  //           opacityTo: 0.5,
+  //           stops: [0, 90, 100],
+  //         },
+  //       },
+  //     },
 
-      chart: {
-        fontFamily: "lexend, sans-serif",
-      },
+  //     chart: {
+  //       fontFamily: "lexend, sans-serif",
+  //     },
 
-      seriesArea: [
-        {
-          name: "Revenue",
-          data: [30, 40, 45, 50, 49, 60, 70, 91],
-        },
-        {
-          name: "Revenue (Previous period)",
-          data: [20, 34, 45, 55, 79, 87, 90, 98],
-        },
-      ],
-      optionsBar: {
-        chart: {
-          toolbar: {
-            show: false,
-          },
-          zoom: {
-            enabled: false,
-          },
-          sparkline: {
-            enabled: true,
-          },
-        },
-        legend: {
-          show: false,
-        },
-        xaxis: {
-          show: false,
-        },
-        yaxis: {
-          show: false,
-        },
-        colors: ["#4f46e5", "#DC2626"],
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          curve: "straight",
-        },
-      },
+  //     seriesArea: [
+  //       {
+  //         name: "Revenue",
+  //         data: [30, 40, 45, 50, 49, 60, 70, 91],
+  //       },
+  //       {
+  //         name: "Revenue (Previous period)",
+  //         data: [20, 34, 45, 55, 79, 87, 90, 98],
+  //       },
+  //     ],
+  //     optionsBar: {
+  //       chart: {
+  //         toolbar: {
+  //           show: false,
+  //         },
+  //         zoom: {
+  //           enabled: false,
+  //         },
+  //         sparkline: {
+  //           enabled: true,
+  //         },
+  //       },
+  //       legend: {
+  //         show: false,
+  //       },
+  //       xaxis: {
+  //         show: false,
+  //       },
+  //       yaxis: {
+  //         show: false,
+  //       },
+  //       colors: ["#4f46e5", "#DC2626"],
+  //       dataLabels: {
+  //         enabled: false,
+  //       },
+  //       stroke: {
+  //         curve: "straight",
+  //       },
+  //     },
 
-      seriesBar: [
-        {
-          name: "Product 1",
-          data: [30, 40, 45, 50, 49, 60, 70, 91],
-        },
-        {
-          name: "Product 2",
-          data: [20, 34, 45, 55, 79, 87, 90, 98],
-        },
-      ],
-      optionsVisitor: {
-        chart: {
-          toolbar: {
-            show: false,
-          },
-          zoom: {
-            enabled: false,
-          },
-          sparkline: {
-            enabled: true,
-          },
-        },
-        legend: {
-          show: false,
-        },
-        xaxis: {
-          show: false,
-        },
-        yaxis: {
-          show: false,
-        },
-        colors: ["#4f46e5"],
-        dataLabels: {
-          enabled: false,
-        },
-        fill: {
-          type: "gradient",
-          gradient: {
-            shadeIntensity: 0,
-            opacityFrom: 0,
-            opacityTo: 0.3,
-            stops: [0, 90, 100],
-          },
-        },
-        stroke: {
-          curve: "smooth",
-        },
-      },
+  //     seriesBar: [
+  //       {
+  //         name: "Product 1",
+  //         data: [30, 40, 45, 50, 49, 60, 70, 91],
+  //       },
+  //       {
+  //         name: "Product 2",
+  //         data: [20, 34, 45, 55, 79, 87, 90, 98],
+  //       },
+  //     ],
+  //     optionsVisitor: {
+  //       chart: {
+  //         toolbar: {
+  //           show: false,
+  //         },
+  //         zoom: {
+  //           enabled: false,
+  //         },
+  //         sparkline: {
+  //           enabled: true,
+  //         },
+  //       },
+  //       legend: {
+  //         show: false,
+  //       },
+  //       xaxis: {
+  //         show: false,
+  //       },
+  //       yaxis: {
+  //         show: false,
+  //       },
+  //       colors: ["#4f46e5"],
+  //       dataLabels: {
+  //         enabled: false,
+  //       },
+  //       fill: {
+  //         type: "gradient",
+  //         gradient: {
+  //           shadeIntensity: 0,
+  //           opacityFrom: 0,
+  //           opacityTo: 0.3,
+  //           stops: [0, 90, 100],
+  //         },
+  //       },
+  //       stroke: {
+  //         curve: "smooth",
+  //       },
+  //     },
 
-      seriesVisitor: [
-        {
-          name: "Visitor ",
-          data: [30, 40, 45, 50, 49, 60, 70, 91],
-        },
-      ],
-      optionsDonut: {
-        chart: {
-          type: "donut",
-        },
-        legend: false,
-        dataLabels: {
-          enabled: false,
-        },
-        labels: ["admin", "SuperAdmin", "User", "Costumer"],
-      },
+  //     seriesVisitor: [
+  //       {
+  //         name: "Visitor ",
+  //         data: [30, 40, 45, 50, 49, 60, 70, 91],
+  //       },
+  //     ],
+  //     optionsDonut: {
+  //       chart: {
+  //         type: "donut",
+  //       },
+  //       legend: false,
+  //       dataLabels: {
+  //         enabled: false,
+  //       },
+  //       labels: ["admin", "SuperAdmin", "User", "Costumer"],
+  //     },
 
-      seriesDonut: [20, 15, 63, 83],
-      tableTransaction: [
-        {
-          transaction: "Payment from Ethan Roger",
-          datetime: "Apr 22, 2022",
-          amount: "₹450.000",
-          statusTransaction: "completed",
-        },
-        {
-          transaction: "Payment from Taylor neal",
-          datetime: "May 2, 2022",
-          amount: "₹250.000",
-          statusTransaction: "completed",
-        },
-        {
-          transaction: "Payment from Tobi Ferreira",
-          datetime: "May 5, 2022",
-          amount: "₹150.000",
-          statusTransaction: "progress",
-        },
-        {
-          transaction: "Payment failed from #046577",
-          datetime: "May 5, 2022",
-          amount: "₹180.000",
-          statusTransaction: "cancelled",
-        },
-      ],
-    };
-    // end chart data line
-  },
-  components: {
-    Icon,
-  },
-  mounted() {},
+  //     seriesDonut: [20, 15, 63, 83],
+  //     tableTransaction: [
+  //       {
+  //         transaction: "Payment from Ethan Roger",
+  //         datetime: "Apr 22, 2022",
+  //         amount: "₹450.000",
+  //         statusTransaction: "completed",
+  //       },
+  //       {
+  //         transaction: "Payment from Taylor neal",
+  //         datetime: "May 2, 2022",
+  //         amount: "₹250.000",
+  //         statusTransaction: "completed",
+  //       },
+  //       {
+  //         transaction: "Payment from Tobi Ferreira",
+  //         datetime: "May 5, 2022",
+  //         amount: "₹150.000",
+  //         statusTransaction: "progress",
+  //       },
+  //       {
+  //         transaction: "Payment failed from #046577",
+  //         datetime: "May 5, 2022",
+  //         amount: "₹180.000",
+  //         statusTransaction: "cancelled",
+  //       },
+  //     ],
+  //   };
+  //   // end chart data line
+  // },
+  // components: {
+  //   Icon,
 };
 </script>

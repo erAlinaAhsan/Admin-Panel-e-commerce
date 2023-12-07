@@ -49,7 +49,7 @@
         <div class="wrap-item mt-4 dark:text-gray-500">
           <div class="item">
             <router-link
-              to="/"
+              to="/dashboard"
               exact
               class="w-full flex text-left rounded-md box-border p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
             >
@@ -57,6 +57,50 @@
               <span class="w-full"> Dashboard </span>
             </router-link>
           </div>
+          <div class="item mt-3">
+            <router-link
+              to="/admin/category/manage"
+              exact
+              class="w-full flex text-left rounded-md box-border p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+            >
+              <span class="mr-3 text-xl"><Icon icon="bxs:dashboard" /></span>
+              <span class="w-full"> Manage Categories </span>
+            </router-link>
+          </div>
+
+          <div class="item mt-3">
+            <router-link
+              to="/admin/product/manage"
+              exact
+              class="w-full flex text-left rounded-md box-border p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+            >
+              <span class="mr-3 text-xl"><Icon icon="bxs:dashboard" /></span>
+              <span class="w-full"> Manage Products </span>
+            </router-link>
+          </div>
+
+          <div class="item mt-3">
+            <router-link
+              to="/admin/customers/manage"
+              exact
+              class="w-full flex text-left rounded-md box-border p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+            >
+              <span class="mr-3 text-xl"><Icon icon="bxs:dashboard" /></span>
+              <span class="w-full"> Manage Customers </span>
+            </router-link>
+          </div>
+
+          <div class="item mt-3">
+            <router-link
+              to="/admin/orders/manage"
+              exact
+              class="w-full flex text-left rounded-md box-border p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+            >
+              <span class="mr-3 text-xl"><Icon icon="bxs:dashboard" /></span>
+              <span class="w-full"> Manage Orders </span>
+            </router-link>
+          </div>
+
           <div class="item mt-3">
             <menu-accordion>
               <template v-slot:icon>

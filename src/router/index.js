@@ -1,16 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-// Default Pages
+// Views Pages
 import Dashboard from "../views/Dashboard.vue";
-import Product from '../views/Product/Product.vue'
-import AddProduct from '../views/Product/AddProduct.vue'
-import EditProduct from '../views/Product/EditProduct.vue'
-import ShowDetails from '../views/Product/ShowDetails.vue'
-import Wishlist from '../views/Product/Wishlist.vue'
-
-
+import ManageProduct from '../views/Product/ManageProduct.vue'
 import ManageCategory from '../views/Category/ManageCategory.vue'
-import ListProducts from '../views/Category/ListProducts.vue'
+import ManageCustomers from '../views/Customers/ManageCustomers.vue'
+import ManageOrders from '../views/Orders/ManageOrders.vue'
 // Component Pages
 import Valert from "../views/components/alert.vue";
 import Vaccrodion from "../views/components/accordion.vue";
@@ -43,48 +38,28 @@ const routes = [
     component: Dashboard,
     meta: { title: "Dashboard " + appname },
   },
+
   {
-    path: '/product',
-    name: 'Product',
-    component: Product
+    path: '/admin/product/manage',
+    name: 'ManageProduct',
+    component: ManageProduct
   },
-  {
-    path: '/admin/product',
-    name: 'AdminProduct',
-    component: Product
-  },
-  {
-    path: '/admin/product/add',
-    name: 'AddProduct',
-    component: AddProduct
-  },
-  {
-    path: '/admin/product/:id',
-    name: 'EditProduct',
-    component: EditProduct,
-  },
-  {
-    path: '/product/show/:id',
-    name: 'ShowDetails',
-    component: ShowDetails
-  },
+
   //Category routes
-
-
   {
     path: '/admin/category/manage',
     name: 'ManageCategory',
     component: ManageCategory
   },
   {
-    path: '/category/show/:id',
-    name: 'ListProducts',
-    component: ListProducts
+    path: '/admin/customers/manage',
+    name: 'ManageCustomers',
+    component: ManageCustomers
   },
   {
-    path: '/wishlist',
-    name: 'Wishlist',
-    component: Wishlist
+    path: '/admin/orders/manage',
+    name: 'ManageOrders',
+    component: ManageOrders
   },
 
   // Components based Routes

@@ -3,7 +3,9 @@ import { createRouter, createWebHistory } from "vue-router";
 // Views Pages
 import Dashboard from "../views/Dashboard.vue";
 import ManageProduct from '../views/Product/ManageProduct.vue'
+import AddProduct from '../views/Product/AddProduct.vue'
 import ManageCategory from '../views/Category/ManageCategory.vue'
+import AddCategory from '../views/Category/AddCategory.vue'
 import ManageCustomers from '../views/Customers/ManageCustomers.vue'
 import ManageOrders from '../views/Orders/ManageOrders.vue'
 // Component Pages
@@ -36,7 +38,8 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
-    meta: { title: "Dashboard " + appname },
+    meta: { requiresAuth: true },
+    // meta: { title: "Dashboard " + appname },
   },
 
   {
@@ -44,12 +47,22 @@ const routes = [
     name: 'ManageProduct',
     component: ManageProduct
   },
+  {
+    path: '/admin/product/add',
+    name: 'AddProduct',
+    component: AddProduct
+  },
 
   //Category routes
   {
     path: '/admin/category/manage',
     name: 'ManageCategory',
     component: ManageCategory
+  },
+  {
+    path: '/admin/category/add',
+    name: 'AddCategory',
+    component: AddCategory
   },
   {
     path: '/admin/customers/manage',

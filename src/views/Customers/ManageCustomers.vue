@@ -1,56 +1,125 @@
 <template>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    integrity="sha384-ez0X1PxrJzFXjDGlYPXu3Un5z1ZlKPNwF+iK9i8vjPrsICdB6admd/vIB7aUv3p3N"
-    crossorigin="anonymous"
-  />
-
-  <div class="container" style="max-width: 600px">
-    <h1
-      class="flex justify-center items-center mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-3xl dark:text-white"
+  <div
+    class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8"
+  >
+    <div
+      class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
     >
-      MANAGE CUSTOMERS
-    </h1>
+      <div class="flex justify-between">
+        <h1 class="text-2xl text-gray-900 dark:text-gray-200 font-medium">
+          Manage Customers
+        </h1>
+      </div>
+    </div>
 
     <div
       v-if="customers && customers.length > 0"
       class="flex justify-center w-full relative overflow-x-auto"
     >
-      <table
-        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+      <div
+        class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg"
       >
-        <thead
-          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-        >
-          <tr>
-            <th scope="col" class="px-6 py-3">Id</th>
-            <th scope="col" class="px-6 py-3">Name</th>
-            <th scope="col" class="px-6 py-3">email_Address</th>
-            <th scope="col" class="px-6 py-3">Contact</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-            v-for="customer in customers"
-            :key="customer.id"
+        <table class="min-w-full">
+          <thead
+            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
           >
-            <td class="px-6 py-4">
-              <span class="id">{{ customer.id }}</span>
-            </td>
-            <td class="px-6 py-4">
-              <span class="name">{{ customer.name }}</span>
-            </td>
-            <td class="px-6 py-4">
-              <span class="email">{{ customer.email }}</span>
-            </td>
-            <td class="px-6 py-4">
-              <span class="phone">{{ customer.phone }}</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            <tr>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+              >
+                ID
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
+              >
+                Name
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
+              >
+                Email
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
+              >
+                Phone
+              </th>
+
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
+              >
+                Status
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
+              >
+                Role
+              </th>
+              <th class="px-6 py-3 border-b-2 border-gray-300"></th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr
+              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+              v-for="customer in customers"
+              :key="customer.id"
+            >
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  customer.id
+                }}</span>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  customer.name
+                }}</span>
+              </td>
+              <td
+                class="px-6 py-4 whitespace-no-wrap border-b text-gray-400 border-gray-300 text-sm leading-5"
+              >
+                <span class="email">{{ customer.email }}</span>
+              </td>
+              <td
+                class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-300 text-sm leading-5"
+              >
+                <span class="phone">{{ customer.phone }}</span>
+              </td>
+
+              <td
+                class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-300 text-sm leading-5"
+              >
+                <span
+                  class="relative inline-block px-3 py-1 font-semibold leading-tight"
+                  :class="{
+                    'text-green-900': customer.status === 1,
+                    'text-red-900': customer.status !== 1,
+                  }"
+                >
+                  <span
+                    aria-hidden
+                    class="absolute inset-0"
+                    :class="{
+                      'bg-green-200 opacity-50 rounded-full':
+                        customer.status === 1,
+                      'bg-red-200 opacity-50 rounded-full':
+                        customer.status !== 1,
+                    }"
+                  ></span>
+                  <span class="relative text-xs">
+                    {{ customer.status === 1 ? "Active" : "Deactive" }}
+                  </span>
+                </span>
+              </td>
+
+              <td
+                class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-300 text-sm leading-5"
+              >
+                <span class="role">{{ customer.role }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -70,6 +139,8 @@ export default {
       customerName: "",
       email: "",
       phone: "",
+      role: "",
+      status: "",
     };
   },
 

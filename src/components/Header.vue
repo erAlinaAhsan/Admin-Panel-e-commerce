@@ -148,7 +148,7 @@
               />
             </div>
             <div class="text-left lg:block md:block hidden">
-              <h2 class="dark:text-white text-gray-800">Hi,{{ name }}</h2>
+              <h2 class="dark:text-white text-gray-800">Admin</h2>
               <p class="text-xs text-gray-400 dark:text-gray-500">
                 Frontend Developer
               </p>
@@ -166,8 +166,7 @@
             class="block absolute right-10 mt-12 z-50 w-52 border dark:border-gray-700 bg-white dark:bg-gray-800 rounded divide-y dark:divide-gray-700 divide-gray-100 shadow"
           >
             <div class="py-3 px-4 text-sm text-gray-900 dark:text-gray-200">
-              <div>Admin:</div>
-              <div class="font-medium truncate">{{ name }}</div>
+              <div class="font-medium truncate">Admin</div>
             </div>
             <ul
               class="py-1 text-sm text-gray-700 dark:text-gray-200"
@@ -182,22 +181,21 @@
               </li>
             </ul>
 
-            <div class="py-1">
+            <!-- <div class="py-1">
               <a
                 href="#"
                 class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white"
                 @click="$router.push('/')"
                 >Log in</a
-              >
+              > -->
 
-              <div class="py-1">
-                <a
-                  href="#"
-                  class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white"
-                  @click="$router.push('/')"
-                  >Log out</a
-                >
-              </div>
+            <div class="py-1">
+              <a
+                href="#"
+                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white"
+                @click="$router.push('/')"
+                >Log out</a
+              >
             </div>
           </div>
         </transition>
@@ -268,8 +266,20 @@ export default {
     menuToggle: function () {
       this.menu = !this.menu;
     },
+    handleLogout() {
+      // Clear the stored token and redirect to the login page
+      localStorage.removeItem("authToken");
+      this.$router.push("/");
+    },
+
     menuToggleBlur: function () {
       this.menu = false;
+      const confirmLogout = confirm("Are you sure you want to log out?");
+      if (confirmLogout) {
+        // Clear the stored token and redirect to the login page
+        localStorage.removeItem("authToken");
+        this.$router.push("/");
+      }
     },
     notifToggle: function () {
       this.notification = !this.notification;

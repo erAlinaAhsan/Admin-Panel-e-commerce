@@ -6,137 +6,124 @@
     crossorigin="anonymous"
   />
 
-  <div class="container" style="max-width: 600px">
-    <h1
-      class="flex justify-center items-center mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-3xl dark:text-white"
-    >
-      MANAGE CATEGORIES
-    </h1>
-    <!-- <div
-      class="wrapper-card grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-2 mt-5"
-    > -->
-    <!-- card  -->
-    <!-- <div
-        class="card bg-white dark:bg-gray-800 w-full rounded-md p-5 border dark:border-gray-700 flex"
-      > -->
-    <div class="flex justify-center items-center mb-5">
-      <form class="max-w-sm mx-auto text-gray-900">
-        <h3
-          class="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-2xl dark:text-white"
-        >
-          ADD CATEGORY
-        </h3>
-        <div class="mb-5">
-          <label class="block mb-2 text-sm font-medium text-gray-900"
-            >Category Name</label
-          >
-          <input
-            type="text"
-            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            v-model="categoryName"
-            placeholder="Enter category name..."
-            required
-          />
-        </div>
-        <div class="mb-5">
-          <label class="block mb-2 text-sm font-medium text-gray-900"
-            >Description</label
-          >
-          <input
-            type="text"
-            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            v-model="description"
-            placeholder="Enter description..."
-            required
-          />
-          <button
-            type="button"
-            class="mt-5 hover:bg-gray-600 text-black px-4 py-2 rounded bg-gray-400"
-            @click="addCategory"
-          >
-            Add
-          </button>
-        </div>
-      </form>
+  <div
+    class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8"
+  >
+    <div class="flex justify-between">
+      <h1
+        class="text-2xl px-4 py-2 text-indigo-900 dark:text-gray-200 font-medium"
+      >
+        Manage Categories
+      </h1>
     </div>
-    <!-- </div> -->
-    <!-- </div> -->
+    <div class="flex justify-end items-center mr-8 mb-5">
+      <router-link to="/admin/category/add">
+        <button
+          class="hover:bg-indigo-400 text-white px-4 py-2 rounded bg-indigo-600"
+        >
+          <span class="text-xl">+</span>
+          <span class="ml-2">Add New Category</span>
+        </button>
+      </router-link>
+    </div>
+
     <!-- Edit Category Modal -->
     <div v-if="showEditModal" class="modal">
       <div class="flex justify-center items-center">
-        <form
-          @submit.prevent="editCategory"
-          class="max-w-sm mx-auto text-gray-900"
+        <div
+          class="max-w-md w-full mx-auto bg-white dark:bg-gray-800 rounded-md p-8 shadow-md"
         >
-          <h3
-            class="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-2xl dark:text-white"
-          >
-            EDIT CATEGORY
-          </h3>
-          <div class="mb-5">
-            <label
-              for="edit-name"
-              class="block mb-2 text-sm font-medium text-gray-900"
-              >Category Name</label
+          <form @submit.prevent="editCategory" class="text-gray-900">
+            <h3
+              class="mb-4 text-xl font-extrabold leading-none tracking-tight text-indigo-900 md:text-xl lg:text-2xl dark:text-white"
             >
-            <input
-              type="text"
-              id="edit-name"
-              class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              v-model="editingCategory.name"
-              required
-            />
-          </div>
-          <div class="mb-5">
-            <label
-              for="edit-description"
-              class="block mb-2 text-sm font-medium text-gray-900"
-              >Description</label
-            >
-            <input
-              type="text"
-              id="edit-description"
-              class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              v-model="editingCategory.description"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            class="mt-5 mb-5 mr-5 hover:bg-gray-600 text-black px-4 py-2 rounded bg-gray-400"
-          >
-            Save Changes
-          </button>
-          <button
-            @click="closeEditModal"
-            class="text-xl align-center cursor-pointer alert-del"
-          >
-            &times;
-          </button>
-        </form>
+              EDIT CATEGORY
+            </h3>
+            <div class="mb-5">
+              <label
+                for="edit-name"
+                class="block mb-2 text-sm font-medium text-indigo-900"
+                >Category Name</label
+              >
+              <input
+                type="text"
+                id="edit-name"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-indigo-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                v-model="editingCategory.name"
+                required
+              />
+            </div>
+            <div class="mb-5">
+              <label
+                for="edit-description"
+                class="block mb-2 text-sm font-medium text-indigo-900"
+                >Description</label
+              >
+              <input
+                type="text"
+                id="edit-description"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-indigo-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                v-model="editingCategory.description"
+                required
+              />
+            </div>
+            <div class="flex justify-between">
+              <button
+                type="submit"
+                class="hover:bg-indigo-300 text-white px-4 py-2 rounded bg-indigo-600"
+              >
+                Save Changes
+              </button>
+              <button
+                @click="closeEditModal"
+                class="text-xl align-center cursor-pointer alert-del"
+              >
+                &times;
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
 
-    <!-- <div class="row"> -->
-    <!-- <div class="col-3"></div> -->
-    <!-- <div class="col-md-6 px-5 px-md-0"> -->
+    <div
+      class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
+    ></div>
     <div
       v-if="categories.length > 0"
       class="flex justify-center w-full relative overflow-x-auto"
     >
       <!-- <h5>Existing Categories:</h5> -->
-      <table
-        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
-      >
+      <table class="min-w-full">
         <thead
           class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
         >
           <tr>
-            <th scope="col" class="px-6 py-3">Id</th>
-            <th scope="col" class="px-6 py-3">Name</th>
-            <th scope="col" class="px-6 py-3">Description</th>
-            <th scope="col" class="px-6 py-3">Delete</th>
-            <th scope="col" class="px-6 py-3">Edit</th>
+            <th
+              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
+            >
+              Id
+            </th>
+            <th
+              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
+            >
+              Name
+            </th>
+            <th
+              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
+            >
+              Description
+            </th>
+            <th
+              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
+            >
+              Delete
+            </th>
+            <th
+              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
+            >
+              Edit
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -145,23 +132,29 @@
             v-for="category in categories"
             :key="category.id"
           >
-            <td class="px-6 py-4">
-              <span class="id">{{ category.id }}</span>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+              <span class="text-sm leading-5 text-blue-900">{{
+                category.id
+              }}</span>
             </td>
-            <td class="px-6 py-4">
-              <span class="name">{{ category.name }}</span>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+              <span class="text-sm leading-5 text-blue-900">{{
+                category.name
+              }}</span>
             </td>
-            <td class="px-6 py-4">
-              <span class="description">{{ category.description }}</span>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+              <span class="text-sm leading-5 text-blue-900">{{
+                category.description
+              }}</span>
             </td>
-            <td class="px-6 py-4">
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
               <button @click="deleteCategory(category.id)">
-                <i class="fa fa-trash cursor-pointer"></i>
+                <i class="fa fa-trash cursor-pointer text-red-500"></i>
               </button>
             </td>
-            <td class="px-6 py-4">
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
               <button @click="openEditModal(category)">
-                <i class="fa fa-pen pointer"></i>
+                <i class="fa fa-pen pointer text-green-500"></i>
               </button>
             </td>
           </tr>
@@ -169,26 +162,6 @@
       </table>
     </div>
   </div>
-  <!-- </div> -->
-  <!-- <div class="col-3"></div> -->
-  <!-- </div> -->
-
-  <!-- <div class="row">
-      <div class="col-3"></div>
-      <div class="col-md-6 px-5 px-md-0">
-        <div v-if="categories.length > 0" class="mt-3">
-          <h5>Existing Categories:</h5>
-          <ul>
-            <li v-for="category in categories" :key="category.id">
-              <p class="id">{{ category.id }} - {{ category.name }}</p>
-              <p class="description">{{ category.description }}</p>
-              <button @click="deleteCategory(category.id)">Delete</button>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-3"></div>
-    </div> -->
 </template>
 
 <script>
@@ -204,36 +177,10 @@ export default {
       categories: [],
       showEditModal: false,
       editingCategory: { id: null, name: "", description: "" },
-      categoryName: "",
-      description: "",
     };
   },
 
   methods: {
-    async addCategory() {
-      try {
-        const response = await axios.post(this.baseURL, {
-          name: this.categoryName,
-          description: this.description,
-        });
-
-        if (response.data.success) {
-          // Assuming the API response contains the newly added category
-          const newCategory = response.data.data;
-          this.categories.push(newCategory);
-
-          // Clear input fields after successfully adding a new category
-          this.categoryName = "";
-          this.description = "";
-        } else {
-          this.showAlert("Unable to add category");
-        }
-      } catch (error) {
-        console.error("API Error:", error);
-        this.showAlert("Can't connect to the server");
-      }
-    },
-
     openEditModal(category) {
       this.showEditModal = true;
       this.editingCategory = { ...category };
@@ -279,25 +226,27 @@ export default {
 
     async deleteCategory(categoryId) {
       try {
-        console.log("Deleting category:", categoryId);
+        const confirmation = window.confirm(
+          "Are you sure you want to delete this category?"
+        );
 
-        const response = await axios.delete(`${this.baseURL}/${categoryId}`);
+        if (confirmation) {
+          const response = await axios.delete(`${this.baseURL}/${categoryId}`);
 
-        console.log("API Response:", response);
+          if (response.status === 204) {
+            // Remove the deleted category from the list
+            this.categories = this.categories.filter(
+              (category) => category.id !== categoryId
+            );
 
-        if (response.status === 204) {
-          // Remove the deleted category from the list
-          this.categories = this.categories.filter(
-            (category) => category.id !== categoryId
-          );
+            const token = response.data.token;
 
-          const token = response.data.token;
-
-          if (token) {
-            localStorage.setItem("authToken", token);
+            if (token) {
+              localStorage.setItem("authToken", token);
+            }
+          } else {
+            this.showLErrorAlert("Unable to delete category");
           }
-        } else {
-          this.showLErrorAlert("Unable to delete category");
         }
       } catch (error) {
         console.error("API Error:", error);
@@ -330,33 +279,4 @@ export default {
 
 
 <style scoped>
-/* h4,
-h5 {
-  font-family: "Magisho", sans-serif;
-  color: #484848;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-shadow: 1px 1px 2px black;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.id,
-.description,
-.form-group,
-.mt-3 {
-  display: flex;
-  justify-content: flex-start;
-  font-size: 1rem;
-  width: 30em;
-  word-wrap: break-word;
-  text-align: center;
-  padding-bottom: 2em;
-  border-bottom: 1px solid white;
-  text-shadow: 1px 1px 2px black;
-  font-family: "Valverde", sans-serif;
-}
-.description {
-  text-align: left !important;
-} */
 </style>

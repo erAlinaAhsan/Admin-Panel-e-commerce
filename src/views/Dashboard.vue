@@ -190,7 +190,7 @@ export default {
         const response = await axios.get(
           "https://ecommerce.hyperzod.dev/api/admin/categories"
         );
-        this.totalCategories = response.data.length; // Assuming the API returns an array of categories
+        this.totalCategories = response.data.data.length; // Assuming the API returns an array of categories
       } catch (error) {
         console.error("API Error:", error);
       }
@@ -203,7 +203,7 @@ export default {
         const response = await axios.get(
           "https://ecommerce.hyperzod.dev/api/admin/products"
         );
-        this.totalProducts = response.data.length;
+        this.totalProducts = response.data.data.length;
       } catch (error) {
         console.error("API Error:", error);
       }

@@ -14,7 +14,9 @@
       class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
     >
       <div class="flex justify-between">
-        <h1 class="text-2xl text-gray-900 dark:text-gray-200 font-medium">
+        <h1
+          class="text-2xl px-4 py-2 text-indigo-900 dark:text-gray-200 font-medium"
+        >
           Manage Orders
         </h1>
       </div>
@@ -51,6 +53,11 @@
                 class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
               >
                 Payment Status
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+              >
+                Action
               </th>
             </tr>
           </thead>

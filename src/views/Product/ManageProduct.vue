@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css" />
 
     <div class="flex justify-between">
-      <h1 class="text-2xl text-gray-900 dark:text-gray-200 font-medium">
+      <h1
+        class="text-2xl px-4 py-2 text-indigo-900 dark:text-gray-200 font-medium"
+      >
         Manage Products
       </h1>
     </div>
@@ -26,217 +28,112 @@
         </button>
       </router-link>
     </div>
-    <!-- Edit Product Modal -->
-    <!-- <div v-if="showEditModal" class="modal">
-      <div class="flex justify-center items-center">
-        <div
-          class="max-w-md w-full mx-auto bg-white dark:bg-gray-800 rounded-md p-8 shadow-md"
-        >
-          <form
-            @submit.prevent="editProduct"
-            class="max-w-sm mx-auto text-gray-900"
-          >
-            <h3
-              class="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-2xl dark:text-white"
-            >
-              EDIT PRODUCT
-            </h3>
-            <div class="mb-5">
-              <label
-                for="edit-name"
-                class="block mb-2 text-sm font-medium text-indigo-900"
-                >Product Name</label
-              >
-              <input
-                type="text"
-                id="edit-name"
-                class="shadow-sm bg-gray-50 border border-gray-300 text-indigo-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                v-model="editingProduct.name"
-                required
-              />
-            </div>
-            <div class="mb-5">
-              <label
-                for="edit-description"
-                class="block mb-2 text-sm font-medium text-indigo-900"
-                >Description</label
-              >
-              <input
-                type="text"
-                id="edit-description"
-                class="shadow-sm bg-gray-50 border border-gray-300 text-indigo-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                v-model="editingProduct.description"
-                required
-              />
-            </div>
-            <div class="mb-5">
-              <label
-                for="edit-price"
-                class="block mb-2 text-sm font-medium text-indigo-900"
-                >Price</label
-              >
-              <input
-                type="text"
-                id="edit-name"
-                class="shadow-sm bg-gray-50 border border-gray-300 text-indigo-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                v-model="editingProduct.price"
-                required
-              />
-            </div>
-            <div class="mb-5">
-              <label
-                for="edit-quantity"
-                class="block mb-2 text-sm font-medium text-indigo-900"
-                >Quantity</label
-              >
-              <input
-                type="text"
-                id="edit-name"
-                class="shadow-sm bg-gray-50 border border-gray-300 text-indigo-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                v-model="editingProduct.quantity_in_stock"
-                required
-              />
-            </div>
-            <div class="mb-5">
-              <button
-                type="submit"
-                class="hover:bg-indigo-300 text-white px-4 py-2 rounded bg-indigo-600"
-              >
-                Save Changes
-              </button>
-              <button
-                @click="closeEditModal"
-                class="text-xl align-center cursor-pointer alert-del"
-              >
-                &times;
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div> -->
-    <!-- <div
-      class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
-    ></div> -->
+  </div>
+  <div
+    class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
+  >
     <div
-      class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
+      v-if="products && products.length > 0"
+      class="flex justify-center w-full relative overflow-x-auto"
     >
       <div
-        v-if="products && products.length > 0"
-        class="flex justify-center w-full relative overflow-x-auto"
+        class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg"
       >
-        <div
-          class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg"
-        >
-          <table class="min-w-full">
-            <thead
-              class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-            >
-              <tr>
-                <th
-                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-                >
-                  Id
-                </th>
-                <th
-                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-                >
-                  Name
-                </th>
-                <th
-                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-                >
-                  Description
-                </th>
-                <th
-                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-                >
-                  Price
-                </th>
-                <th
-                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-                >
-                  Quantity
-                </th>
-                <th
-                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-                >
-                  Delete
-                </th>
-                <th
-                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-                >
-                  Edit
-                </th>
-              </tr>
-            </thead>
-            <tbody class="bg-white">
-              <tr
-                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                v-for="product in products"
-                :key="product.id"
+        <table class="min-w-full">
+          <thead
+            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+          >
+            <tr>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
               >
-                <td
-                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
-                >
-                  <span class="text-sm leading-5 text-blue-900">{{
-                    product.category.id
-                  }}</span>
-                </td>
-                <td
-                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
-                >
-                  <span class="text-sm leading-5 text-blue-900">{{
-                    product.id
-                  }}</span>
-                </td>
-                <td
-                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
-                >
-                  <span class="text-sm leading-5 text-blue-900">{{
-                    product.name
-                  }}</span>
-                </td>
-                <td
-                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
-                >
-                  <span class="text-sm leading-5 text-blue-900">{{
-                    product.description
-                  }}</span>
-                </td>
-                <td
-                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
-                >
-                  <span class="text-sm leading-5 text-blue-900">{{
-                    product.price
-                  }}</span>
-                </td>
-                <td
-                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
-                >
-                  <span class="text-sm leading-5 text-blue-900">{{
-                    product.quantity_in_stock
-                  }}</span>
-                </td>
-                <td
-                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
-                >
-                  <button @click="deleteProduct(product.id)">
-                    <i
-                      aria-hidden
-                      class="fa fa-trash cursor-pointer text-red-500"
-                    ></i>
-                  </button>
-                </td>
-                <!-- <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                Cat_Id
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+              >
+                Id
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+              >
+                Name
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+              >
+                Description
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+              >
+                Price
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+              >
+                Quantity
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+              >
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr
+              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+              v-for="product in products"
+              :key="product.id"
+            >
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  product.category_id
+                }}</span>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  product.id
+                }}</span>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  product.name
+                }}</span>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  product.description
+                }}</span>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  product.price
+                }}</span>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  product.quantity_in_stock
+                }}</span>
+              </td>
+
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <button @click="deleteProduct(product.id)">
+                  <i
+                    aria-hidden
+                    class="fa fa-trash cursor-pointer text-red-500"
+                  ></i>
+                </button>
+              </td>
+              <!-- <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
               <button @click="openEditModal(product)">
                 <i class="fa fa-pen pointer text-green-500"></i>
               </button>
             </td> -->
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -337,7 +234,7 @@ export default {
       try {
         const response = await axios.get(this.baseURL);
         console.log(response);
-        this.products = response.data;
+        this.products = response.data.data;
       } catch (error) {
         console.error("API Error:", error);
       }

@@ -31,7 +31,7 @@
     <div v-if="showEditModal" class="modal">
       <div class="flex justify-center items-center">
         <div
-          class="max-w-md w-full mx-auto bg-white dark:bg-gray-800 rounded-md p-8 shadow-md"
+          class="max-w-md w-full mx-auto bg-white dark:bg-gray-800 rounded-md p-8 shadow-md border border-gray-300"
         >
           <form @submit.prevent="editCategory" class="text-gray-900">
             <h3
@@ -86,80 +86,82 @@
       </div>
     </div>
 
-    <div
-      class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
-    ></div>
-    <div
-      v-if="categories && categories.length > 0"
-      class="flex justify-center w-full relative overflow-x-auto"
-    >
-      <!-- <h5>Existing Categories:</h5> -->
-      <table class="min-w-full">
-        <thead
-          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-        >
-          <tr>
-            <th
-              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
-            >
-              Id
-            </th>
-            <th
-              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
-            >
-              Name
-            </th>
-            <th
-              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
-            >
-              Description
-            </th>
-            <th
-              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
-            >
-              Delete
-            </th>
-            <th
-              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
-            >
-              Edit
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-            v-for="category in categories"
-            :key="category.id"
+    <div v-if="!showEditModal">
+      <div
+        class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
+      ></div>
+      <div
+        v-if="categories && categories.length > 0"
+        class="flex justify-center w-full relative overflow-x-auto"
+      >
+        <!-- <h5>Existing Categories:</h5> -->
+        <table class="min-w-full">
+          <thead
+            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
           >
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <span class="text-sm leading-5 text-blue-900">{{
-                category.id
-              }}</span>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <span class="text-sm leading-5 text-blue-900">{{
-                category.name
-              }}</span>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <span class="text-sm leading-5 text-blue-900">{{
-                category.description
-              }}</span>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <button @click="deleteCategory(category.id)">
-                <i class="fa fa-trash cursor-pointer text-red-500"></i>
-              </button>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <button @click="openEditModal(category)">
-                <i class="fa fa-pen pointer text-green-500"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            <tr>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
+              >
+                Id
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
+              >
+                Name
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
+              >
+                Description
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
+              >
+                Delete
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
+              >
+                Edit
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+              v-for="category in categories"
+              :key="category.id"
+            >
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  category.id
+                }}</span>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  category.name
+                }}</span>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  category.description
+                }}</span>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <button @click="deleteCategory(category.id)">
+                  <i class="fa fa-trash cursor-pointer text-red-500"></i>
+                </button>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <button @click="openEditModal(category)">
+                  <i class="fa fa-pen pointer text-green-500"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>

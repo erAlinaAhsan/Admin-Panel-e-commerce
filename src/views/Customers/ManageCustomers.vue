@@ -7,7 +7,9 @@
       class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
     >
       <div class="flex justify-between">
-        <h1 class="text-2xl text-gray-900 dark:text-gray-200 font-medium">
+        <h1
+          class="text-2xl px-4 py-2 text-indigo-900 dark:text-gray-200 font-medium"
+        >
           Manage Customers
         </h1>
       </div>
@@ -173,11 +175,11 @@ export default {
               (customer) => customer.id !== customerId
             );
 
-            const token = response.data.token;
+            // const token = response.data.token;
 
-            if (token) {
-              localStorage.setItem("authToken", token);
-            }
+            // if (token) {
+            //   localStorage.setItem("authToken", token);
+            // }
           } else {
             this.showLErrorAlert("Unable to delete customer");
           }

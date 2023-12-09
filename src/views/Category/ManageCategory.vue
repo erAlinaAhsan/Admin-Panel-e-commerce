@@ -90,7 +90,7 @@
       class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
     ></div>
     <div
-      v-if="categories.length > 0"
+      v-if="categories && categories.length > 0"
       class="flex justify-center w-full relative overflow-x-auto"
     >
       <!-- <h5>Existing Categories:</h5> -->

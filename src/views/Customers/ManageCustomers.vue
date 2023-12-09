@@ -2,6 +2,7 @@
   <div
     class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8"
   >
+    <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css" />
     <div
       class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
     >
@@ -54,6 +55,11 @@
                 class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
               >
                 Role
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
+              >
+                Action
               </th>
               <th class="px-6 py-3 border-b-2 border-gray-300"></th>
             </tr>
@@ -116,6 +122,14 @@
               >
                 <span class="role">{{ customer.role }}</span>
               </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <button @click="deleteCustomer(customer.id)">
+                  <i
+                    aria-hidden
+                    class="fa fa-trash cursor-pointer text-red-500"
+                  ></i>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -145,6 +159,35 @@ export default {
   },
 
   methods: {
+    async deleteCustomer(customerId) {
+      try {
+        const confirmation = window.confirm(
+          "Are you sure you want to delete this customer?"
+        );
+
+        if (confirmation) {
+          const response = await axios.delete(`${this.baseURL}/${customerId}`);
+          if (response.status === 204) {
+            // Remove the deleted category from the list
+            this.customers = this.customers.filter(
+              (customer) => customer.id !== customerId
+            );
+
+            const token = response.data.token;
+
+            if (token) {
+              localStorage.setItem("authToken", token);
+            }
+          } else {
+            this.showLErrorAlert("Unable to delete customer");
+          }
+        }
+      } catch (error) {
+        console.error("API Error:", error);
+        this.showLErrorAlert("Can't connect to the server");
+      }
+    },
+
     async fetchCustomers() {
       try {
         const response = await axios.get(this.baseURL);

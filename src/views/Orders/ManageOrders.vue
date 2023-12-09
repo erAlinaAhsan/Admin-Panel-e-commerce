@@ -100,6 +100,14 @@
                   </span>
                 </span>
               </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <button @click="deleteOrder(order.id)">
+                  <i
+                    aria-hidden
+                    class="fa fa-trash cursor-pointer text-red-500"
+                  ></i>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -126,6 +134,33 @@ export default {
   },
 
   methods: {
+    async deleteOrder(orderId) {
+      try {
+        const confirmation = window.confirm(
+          "Are you sure you want to delete this order?"
+        );
+
+        if (confirmation) {
+          const response = await axios.delete(`${this.baseURL}/${orderId}`);
+          if (response.status === 204) {
+            // Remove the deleted category from the list
+            this.orders = this.orders.filter((order) => order.id !== orderId);
+
+            // const token = response.data.token;
+
+            // if (token) {
+            //   localStorage.setItem("authToken", token);
+            // }
+          } else {
+            this.showLErrorAlert("Unable to delete order");
+          }
+        }
+      } catch (error) {
+        console.error("API Error:", error);
+        this.showLErrorAlert("Can't connect to the server");
+      }
+    },
+
     async fetchOrders() {
       try {
         const response = await axios.get(this.baseURL);

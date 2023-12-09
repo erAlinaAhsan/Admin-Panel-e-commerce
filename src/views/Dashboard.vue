@@ -47,7 +47,6 @@
 
         <div class="block p-2 w-full">
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
-            13
             {{ totalCategories }}
           </p>
           <h2 class="font-normal text-gray-400 text-md mt-1">

@@ -10,6 +10,18 @@
       <form @submit.prevent="addProduct">
         <div class="mb-5">
           <label class="block mb-2 text-sm font-medium text-indigo-900">
+            Category id
+          </label>
+          <input
+            type="text"
+            class="shadow-sm bg-gray-50 border border-indigo-700 text-blue-700 placeholder-indigo-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            v-model="category_id"
+            placeholder="Enter product name..."
+            required
+          />
+        </div>
+        <div class="mb-5">
+          <label class="block mb-2 text-sm font-medium text-indigo-900">
             Product Name
           </label>
           <input
@@ -51,7 +63,7 @@
           <input
             type="text"
             class="shadow-sm bg-gray-50 border border-indigo-700 text-blue-700 placeholder-indigo-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            v-model="quantity"
+            v-model="quantity_in_stock"
             placeholder="Enter total quantity..."
             required
           />
@@ -74,21 +86,28 @@ export default {
   data() {
     return {
       baseURL: "https://ecommerce.hyperzod.dev/api/admin/products",
+      category_id: null,
       productName: "",
       description: "",
-      price: "",
-      quantity: "", // Corrected variable name
+      price: null,
+      quantity_in_stock: null, // Corrected variable name
     };
   },
 
   methods: {
+    showAlert(message) {
+      // You can implement your own alert logic here
+      // For example, using a toast library or a modal
+      console.error("Alert:", message);
+    },
     async addProduct() {
       try {
         const response = await axios.post(this.baseURL, {
+          category_id: this.category_id,
           name: this.productName,
           description: this.description,
           price: this.price,
-          quantity: this.quantity,
+          quantity_in_stock: this.quantity_in_stock,
         });
 
         if (response.data.success) {
@@ -97,8 +116,8 @@ export default {
           // Clear input fields after successfully adding a new product
           this.productName = "";
           this.description = "";
-          this.price = "";
-          this.quantity = "";
+          this.price = null;
+          this.quantity_in_stock = null;
           this.$router.push("/admin/product/manage");
         } else {
           this.showAlert("Unable to add product");

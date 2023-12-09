@@ -8,10 +8,10 @@
   <div
     class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8"
   >
+    <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css" />
+
     <div class="flex justify-between">
-      <h1
-        class="text-2xl px-4 py-2 text-indigo-900 dark:text-gray-200 font-medium"
-      >
+      <h1 class="text-2xl text-gray-900 dark:text-gray-200 font-medium">
         Manage Products
       </h1>
     </div>
@@ -26,9 +26,8 @@
         </button>
       </router-link>
     </div>
-
     <!-- Edit Product Modal -->
-    <div v-if="showEditModal" class="modal">
+    <!-- <div v-if="showEditModal" class="modal">
       <div class="flex justify-center items-center">
         <div
           class="max-w-md w-full mx-auto bg-white dark:bg-gray-800 rounded-md p-8 shadow-md"
@@ -94,7 +93,7 @@
                 type="text"
                 id="edit-name"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-indigo-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                v-model="editingProduct.quantity"
+                v-model="editingProduct.quantity_in_stock"
                 required
               />
             </div>
@@ -115,217 +114,223 @@
           </form>
         </div>
       </div>
-    </div>
-
+    </div> -->
+    <!-- <div
+      class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
+    ></div> -->
     <div
       class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
-    ></div>
-
-    <div
-      v-if="products && products.length > 0"
-      class="flex justify-center w-full relative overflow-x-auto"
     >
-      <table class="min-w-full">
-        <thead
-          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      <div
+        v-if="products && products.length > 0"
+        class="flex justify-center w-full relative overflow-x-auto"
+      >
+        <div
+          class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg"
         >
-          <tr>
-            <th
-              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+          <table class="min-w-full">
+            <thead
+              class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
             >
-              Id
-            </th>
-            <th
-              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-            >
-              Name
-            </th>
-            <th
-              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-            >
-              Description
-            </th>
-            <th
-              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-            >
-              Price
-            </th>
-            <th
-              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-            >
-              Quantity
-            </th>
-            <th
-              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-            >
-              Delete
-            </th>
-            <th
-              class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-            >
-              Edit
-            </th>
-          </tr>
-        </thead>
-        <tbody class="bg-white">
-          <tr
-            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-            v-for="product in products"
-            :key="product.id"
-          >
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <span class="text-sm leading-5 text-blue-900">{{
-                product.id
-              }}</span>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <span class="text-sm leading-5 text-blue-900">{{
-                product.name
-              }}</span>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <span class="text-sm leading-5 text-blue-900">{{
-                product.description
-              }}</span>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <span class="text-sm leading-5 text-blue-900">{{
-                product.price
-              }}</span>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <span class="text-sm leading-5 text-blue-900">{{
-                product.quantity_in_stock
-              }}</span>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <button @click="deleteProduct(product.id)">
-                <i
-                  aria-hidden
-                  class="fa fa-trash cursor-pointer text-red-500"
-                ></i>
-              </button>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+              <tr>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Id
+                </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Name
+                </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Description
+                </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Price
+                </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Quantity
+                </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Delete
+                </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Edit
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white">
+              <tr
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                v-for="product in products"
+                :key="product.id"
+              >
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <span class="text-sm leading-5 text-blue-900">{{
+                    product.category.id
+                  }}</span>
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <span class="text-sm leading-5 text-blue-900">{{
+                    product.id
+                  }}</span>
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <span class="text-sm leading-5 text-blue-900">{{
+                    product.name
+                  }}</span>
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <span class="text-sm leading-5 text-blue-900">{{
+                    product.description
+                  }}</span>
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <span class="text-sm leading-5 text-blue-900">{{
+                    product.price
+                  }}</span>
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <span class="text-sm leading-5 text-blue-900">{{
+                    product.quantity_in_stock
+                  }}</span>
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <button @click="deleteProduct(product.id)">
+                    <i
+                      aria-hidden
+                      class="fa fa-trash cursor-pointer text-red-500"
+                    ></i>
+                  </button>
+                </td>
+                <!-- <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
               <button @click="openEditModal(product)">
                 <i class="fa fa-pen pointer text-green-500"></i>
               </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </template>
-
 <script>
 // Import Font Awesome CSS in your JavaScript or CSS file
 import "@fortawesome/fontawesome-free/css/all.css";
-
 import axios from "axios";
-
 export default {
   data() {
     return {
       baseURL: "https://ecommerce.hyperzod.dev/api/admin/products",
       products: [],
-      showEditModal: false,
-      editingProduct: {
-        id: null,
-        name: "",
-        description: "",
-        price: "",
-        quantity: "",
-      },
+      category_id: null,
+      id: null,
+      productName: "",
+      description: "",
+      price: null,
+      quantity_in_stock: null,
     };
   },
-
   methods: {
-    async openEditModal(product) {
-      await this.fetchProducts();
-      this.showEditModal = true;
-      this.editingProduct = { ...product };
-    },
-
-    closeEditModal() {
-      this.showEditModal = false;
-      this.editingProduct = {
-        id: null,
-        name: "",
-        description: "",
-        price: null,
-        quantity: null,
-      };
-    },
-
-    async editProduct() {
-      try {
-        const response = await axios.put(
-          `${this.baseURL}/${this.editingProduct.id}`,
-          {
-            name: this.editingProduct.name,
-            description: this.editingProduct.description,
-            price: this.editingProduct.price,
-            quantity: this.editingProduct.quantity,
-          }
-        );
-
-        if (response.data.success) {
-          // Assuming the API response contains the updated category
-          const updatedProduct = response.data.data;
-
-          // Update the category in the list
-          const index = this.products.findIndex(
-            (product) => product.id === updatedProduct.id
-          );
-          if (index !== -1) {
-            this.products.splice(index, 1, updatedProduct);
-          }
-
-          // Close the modal after editing
-          this.closeEditModal();
-        } else {
-          this.showAlert("Unable to edit product");
-        }
-      } catch (error) {
-        console.error("API Error:", error);
-        this.showAlert("Can't connect to the server");
-      }
-    },
+    // async openEditModal(product) {
+    //   await this.fetchProducts();
+    //   this.showEditModal = true;
+    //   this.editingProduct = { ...product };
+    // },
+    // closeEditModal() {
+    //   this.showEditModal = false;
+    //   this.editingProduct = {
+    //     id: null,
+    //     name: "",
+    //     description: "",
+    //     price: null,
+    //     quantity_in_stock: null,
+    //   };
+    // },
+    // async editProduct() {
+    //   try {
+    //     const response = await axios.put(
+    //       `${this.baseURL}/${this.editingProduct.id}`,
+    //       {
+    //         name: this.editingProduct.name,
+    //         description: this.editingProduct.description,
+    //         price: this.editingProduct.price,
+    //         quantity_in_stock: this.editingProduct.quantity_in_stock,
+    //       }
+    //     );
+    //     if (response.data.success) {
+    //       // Assuming the API response contains the updated category
+    //       const updatedProduct = response.data.data;
+    //       // Update the category in the list
+    //       const index = this.products.findIndex(
+    //         (product) => product.id === updatedProduct.id
+    //       );
+    //       if (index !== -1) {
+    //         this.products.splice(index, 1, updatedProduct);
+    //       }
+    //       // Close the modal after editing
+    //       this.closeEditModal();
+    //     } else {
+    //       this.showAlert("Unable to edit product");
+    //     }
+    //   } catch (error) {
+    //     console.error("API Error:", error);
+    //     this.showAlert("Can't connect to the server");
+    //   }
+    // },
 
     async deleteProduct(productId) {
       try {
-        console.log("Deleting product:", productId);
-
-        const response = await axios.delete(`${this.baseURL}/${productId}`);
-
-        console.log("API Response:", response);
-
-        if (response.status === 204) {
-          // Remove the deleted category from the list
-          this.products = this.products.filter(
-            (product) => product.id !== productId
-          );
-
-          const token = response.data.token;
-
-          if (token) {
-            localStorage.setItem("authToken", token);
+        const confirmation = window.confirm(
+          "Are you sure you want to delete this product?"
+        );
+        if (confirmation) {
+          const response = await axios.delete(`${this.baseURL}/${productId}`);
+          console.log("API Response:", response);
+          if (response.status === 204) {
+            // Remove the deleted category from the list
+            this.products = this.products.filter(
+              (product) => product.id !== productId
+            );
+            const token = response.data.token;
+            if (token) {
+              localStorage.setItem("authToken", token);
+            }
+          } else {
+            this.showLErrorAlert("Unable to delete product");
           }
-        } else {
-          this.showLErrorAlert("Unable to delete product");
         }
       } catch (error) {
         console.error("API Error:", error);
         this.showLErrorAlert("Can't connect to the server");
       }
-    },
-
-    showLErrorAlert(message) {
-      this.$swal.fire({
-        text: message,
-        icon: "error",
-      });
     },
 
     async fetchProducts() {
@@ -338,13 +343,10 @@ export default {
       }
     },
   },
-
   mounted() {
     this.fetchProducts();
   },
 };
 </script>
-
-
 <style scoped>
 </style>

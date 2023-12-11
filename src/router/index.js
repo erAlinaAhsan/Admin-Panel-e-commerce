@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 // Views Pages
+
 import Dashboard from "../views/Dashboard.vue";
 import ManageProduct from '../views/Product/ManageProduct.vue'
 import AddProduct from '../views/Product/AddProduct.vue'
@@ -34,6 +35,20 @@ var appname = " - Qart Dashboard Admin Template";
 
 const routes = [
   // Routes
+  // {
+  //   path: '/',
+  //   beforeEnter: (to, from, next) => {
+  //     // Redirect to /dashboard
+  //     next('/dashboard')
+  //   }
+  // },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    meta: { requiresAuth: false, hideNav: true },
+    // meta: { title: "Dashboard " + appname },
+  },
   {
     path: "/dashboard",
     name: "Dashboard",
@@ -45,34 +60,40 @@ const routes = [
   {
     path: '/admin/product/manage',
     name: 'ManageProduct',
-    component: ManageProduct
+    component: ManageProduct,
+    meta: { requiresAuth: true },
   },
   {
     path: '/admin/product/add',
     name: 'AddProduct',
-    component: AddProduct
+    component: AddProduct,
+    meta: { requiresAuth: true },
   },
 
   //Category routes
   {
     path: '/admin/category/manage',
     name: 'ManageCategory',
-    component: ManageCategory
+    component: ManageCategory,
+    meta: { requiresAuth: true },
   },
   {
     path: '/admin/category/add',
     name: 'AddCategory',
-    component: AddCategory
+    component: AddCategory,
+    meta: { requiresAuth: true },
   },
   {
     path: '/admin/customers/manage',
     name: 'ManageCustomers',
-    component: ManageCustomers
+    component: ManageCustomers,
+    meta: { requiresAuth: true },
   },
   {
     path: '/admin/orders/manage',
     name: 'ManageOrders',
-    component: ManageOrders
+    component: ManageOrders,
+    meta: { requiresAuth: true },
   },
 
   // Components based Routes
@@ -80,49 +101,49 @@ const routes = [
     path: "/component/alert",
     name: "Valert",
     component: Valert,
-    meta: { title: "Alert" + appname },
+    meta: { title: "Alert" + appname, requiresAuth: true },
   },
   {
     path: "/component/accordion",
     name: "Vaccordion",
     component: Vaccrodion,
-    meta: { title: "Accordion" + appname },
+    meta: { title: "Accordion" + appname, requiresAuth: true },
   },
   {
     path: "/component/badge",
     name: "Vbadge",
     component: Vbadges,
-    meta: { title: "Badge" + appname },
+    meta: { title: "Badge" + appname, requiresAuth: true },
   },
   {
     path: "/component/breadcumb",
     name: "Vbreadcumb",
     component: Vbreadcumb,
-    meta: { title: "Breadcumb" + appname },
+    meta: { title: "Breadcumb" + appname, requiresAuth: true },
   },
   {
     path: "/component/button",
     name: "Vbutton",
     component: Vbutton,
-    meta: { title: "Button" + appname },
+    meta: { title: "Button" + appname, requiresAuth: true },
   },
   {
     path: "/component/card",
     name: "Vcard",
     component: Vcard,
-    meta: { title: "Card" + appname },
+    meta: { title: "Card" + appname, requiresAuth: true },
   },
   {
     path: "/component/dropdown",
     name: "Vdropdown",
     component: Vdropdown,
-    meta: { title: "Dropdown" + appname },
+    meta: { title: "Dropdown" + appname, requiresAuth: true, },
   },
   {
     path: "/component/modal",
     name: "Vmodal",
     component: Vmodal,
-    meta: { title: "Modal" + appname },
+    meta: { title: "Modal" + appname, requiresAuth: true },
   },
   // layouts
 
@@ -130,22 +151,13 @@ const routes = [
     path: "/Blank",
     name: "Blank Page",
     component: Blank,
-    meta: { title: "Blank Page" + appname },
+    meta: { title: "Blank Page" + appname, requiresAuth: true },
   },
-
-  {
-    path: "/",
-    name: "Login",
-    component: Login,
-    meta: { title: "Login" + appname, hideNav: true },
-  },
-
-
   {
     path: "/auth/forgot-password",
     name: "ForgotPassword",
     component: ForgotPassword,
-    meta: { title: "i Forgot Password" + appname, hideNav: true },
+    meta: { title: "i Forgot Password" + appname, hideNav: true, requiresAuth: true },
   },
   // layout/error
   // default page 404
@@ -153,13 +165,13 @@ const routes = [
     path: "/:pathMatch(.*)*",
     name: "Page404",
     component: Page404,
-    meta: { title: "Upps! 404" + appname, hideNav: true },
+    meta: { title: "Upps! 404" + appname, hideNav: true, requiresAuth: true },
   },
   {
     path: "/500",
     name: "Page500",
     component: Page500,
-    meta: { title: "Server internal Error" + appname, hideNav: true },
+    meta: { title: "Server internal Error" + appname, hideNav: true, requiresAuth: true },
   },
   {
     path: "/maintenance",
@@ -168,6 +180,7 @@ const routes = [
     meta: {
       title: "Sorry the app has been Maintenance" + appname,
       hideNav: true,
+      requiresAuth: true
     },
   },
   {
@@ -176,6 +189,7 @@ const routes = [
     component: Tables,
     meta: {
       title: "Tables" + appname,
+      requiresAuth: true
     },
   },
 ];
@@ -187,9 +201,17 @@ const router = createRouter({
   linkExactActiveClass: "exact-active",
 });
 
-router.beforeEach((to, from, next) => {
-  document.title = to.meta.title;
-  next();
-});
+// router.beforeEach((to, from, next) => {
+//   document.title = to.meta.title;
+//   if (to.matched.some(record => record.meta.requiresAuth)) {
+//     if (localStorage.getItem("authToken") === null) {
+//       next({ name: 'Login' })
+//     } else {
+//       next();
+//     }
+//   } else {
+//     next() // does not require auth, make sure to always call next()!
+//   }
+// });
 
 export default router;

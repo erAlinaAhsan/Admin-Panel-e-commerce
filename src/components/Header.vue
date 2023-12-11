@@ -193,7 +193,7 @@
               <a
                 href="#"
                 class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white"
-                @click="$router.push('/')"
+                @click="$router.push('/login')"
                 >Log out</a
               >
             </div>
@@ -269,7 +269,7 @@ export default {
     handleLogout() {
       // Clear the stored token and redirect to the login page
       localStorage.removeItem("authToken");
-      this.$router.push("/");
+      this.$router.push("/login");
     },
 
     menuToggleBlur: function () {
@@ -278,7 +278,7 @@ export default {
       if (confirmLogout) {
         // Clear the stored token and redirect to the login page
         localStorage.removeItem("authToken");
-        this.$router.push("/");
+        this.$router.push("/login");
       }
     },
     notifToggle: function () {

@@ -10,7 +10,7 @@
         {{ this.$route.params.pathMatch[0] }} was not found!
       </p>
       <button
-        @click="this.$router.push('/')"
+        @click="this.$router.push('/dashboard')"
         class="bg-primary rounded text-white py-3 px-5"
       >
         Return To Dashboard

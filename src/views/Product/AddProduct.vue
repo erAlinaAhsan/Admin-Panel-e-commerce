@@ -10,13 +10,25 @@
       <form @submit.prevent="addProduct">
         <div class="mb-5">
           <label class="block mb-2 text-sm font-medium text-indigo-900">
-            Category id
+            Category
           </label>
+          <!-- <select
+            v-model="category_id"
+            class="shadow-sm bg-gray-50 border border-indigo-700 text-blue-700 placeholder-indigo-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          >
+            <option
+              v-for="category in categories"
+              :key="category.id"
+              :value="category.id"
+            >
+              {{ category.name }}
+            </option>
+          </select> -->
           <input
             type="text"
             class="shadow-sm bg-gray-50 border border-indigo-700 text-blue-700 placeholder-indigo-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             v-model="category_id"
-            placeholder="Enter product name..."
+            placeholder="Select category..."
             required
           />
         </div>
@@ -86,6 +98,7 @@ export default {
   data() {
     return {
       baseURL: "https://ecommerce.hyperzod.dev/api/admin/products",
+      // categories: [],
       category_id: null,
       productName: "",
       description: "",
@@ -93,6 +106,10 @@ export default {
       quantity_in_stock: null, // Corrected variable name
     };
   },
+  // async mounted() {
+  //   // Fetch categories when the component is mounted
+  //   await this.fetchCategories();
+  // },
 
   methods: {
     showAlert(message) {
@@ -100,6 +117,17 @@ export default {
       // For example, using a toast library or a modal
       console.error("Alert:", message);
     },
+    // async fetchCategories() {
+    //   try {
+    //     const response = await axios.get(
+    //       "https://ecommerce.hyperzod.dev/api/categories"
+    //     );
+    //     this.categories = response.data;
+    //   } catch (error) {
+    //     console.error("API Error:", error);
+    //     this.showAlert("Can't fetch categories");
+    //   }
+    // },
     async addProduct() {
       try {
         const response = await axios.post(this.baseURL, {

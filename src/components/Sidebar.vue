@@ -3,7 +3,7 @@
   <nav class="sidebar bg-white dark:bg-gray-800">
     <!-- sidebar head -->
     <div class="sidebar-head p-4">
-      <router-link to="/" exact class="flex">
+      <router-link to="/dashboard" exact class="flex">
         <img
           class="w-15 h-12 mt-1 ml-0 rounded-full overflow-hidden"
           src="@/assets/logo/logo.png"
@@ -101,7 +101,7 @@
             </router-link>
           </div>
 
-          <div class="item mt-3">
+          <!-- <div class="item mt-3">
             <menu-accordion>
               <template v-slot:icon>
                 <Icon icon="gg:components" />
@@ -257,7 +257,7 @@
               <span class="w-full"> Tables </span>
               <span class="box-border mt-1 text-gray-500"> </span>
             </button>
-          </router-link>
+          </router-link> -->
         </div>
       </div>
     </div>

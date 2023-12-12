@@ -65,6 +65,7 @@ export default {
         });
 
         if (response.data.success) {
+          window.alert("New category added successfully");
           // Assuming the API response contains the newly added category
 
           // Clear input fields after successfully adding a new category

@@ -44,11 +44,11 @@
             class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
           >
             <tr>
-              <th
+              <!-- <th
                 class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
               >
                 Cat_Id
-              </th>
+              </th> -->
               <th
                 class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
               >
@@ -63,6 +63,11 @@
                 class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
               >
                 Description
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+              >
+                Image
               </th>
               <th
                 class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
@@ -87,11 +92,11 @@
               v-for="product in products"
               :key="product.id"
             >
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+              <!-- <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
                 <span class="text-sm leading-5 text-blue-900">{{
                   product.category_id
                 }}</span>
-              </td>
+              </td> -->
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
                 <span class="text-sm leading-5 text-blue-900">{{
                   product.id
@@ -107,6 +112,15 @@
                   product.description
                 }}</span>
               </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <img
+                  v-if="product.image"
+                  :src="product.image"
+                  alt="Product Image"
+                  class="max-w-full h-12"
+                />
+              </td>
+
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
                 <span class="text-sm leading-5 text-blue-900">{{
                   product.price
@@ -152,6 +166,7 @@ export default {
       productName: "",
       description: "",
       price: null,
+      image: null,
       quantity_in_stock: null,
     };
   },

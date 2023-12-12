@@ -10,9 +10,9 @@
       <form @submit.prevent="addProduct">
         <div class="mb-5">
           <label class="block mb-2 text-sm font-medium text-indigo-900">
-            Category
+            Select Category
           </label>
-          <!-- <select
+          <select
             v-model="category_id"
             class="shadow-sm bg-gray-50 border border-indigo-700 text-blue-700 placeholder-indigo-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           >
@@ -23,14 +23,14 @@
             >
               {{ category.name }}
             </option>
-          </select> -->
-          <input
+          </select>
+          <!-- <input
             type="text"
             class="shadow-sm bg-gray-50 border border-indigo-700 text-blue-700 placeholder-indigo-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             v-model="category_id"
             placeholder="Select category..."
             required
-          />
+          /> -->
         </div>
         <div class="mb-5">
           <label class="block mb-2 text-sm font-medium text-indigo-900">
@@ -57,11 +57,33 @@
           />
         </div>
         <div class="mb-5">
+          <button
+            @click="openImageInput"
+            type="submit"
+            class="mb-5 hover:bg-indigo-400 text-white px-4 py-2 rounded bg-indigo-600"
+          >
+            Upload Image
+          </button>
+          <!-- <img
+            v-if="product.image"
+            :src="product.image"
+            alt="Product Image"
+            class="max-w-full h-12"
+          /> -->
+          <input
+            type="file"
+            @change="handleImageUpload"
+            accept="image/*"
+            class="shadow-sm bg-gray-50 border border-indigo-700 text-blue-700 placeholder-indigo-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            ref="imageInput"
+          />
+        </div>
+        <div class="mb-5">
           <label class="block mb-2 text-sm font-medium text-indigo-900">
             Price
           </label>
           <input
-            type="text"
+            type="number"
             class="shadow-sm bg-gray-50 border border-indigo-700 text-blue-700 placeholder-indigo-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             v-model="price"
             placeholder="Enter price..."
@@ -73,7 +95,7 @@
             Quantity
           </label>
           <input
-            type="text"
+            type="number"
             class="shadow-sm bg-gray-50 border border-indigo-700 text-blue-700 placeholder-indigo-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             v-model="quantity_in_stock"
             placeholder="Enter total quantity..."
@@ -98,18 +120,24 @@ export default {
   data() {
     return {
       baseURL: "https://ecommerce.hyperzod.dev/api/admin/products",
-      // categories: [],
+      categories: [],
       category_id: null,
       productName: "",
+      image: null,
       description: "",
       price: null,
+      selectedImage: null,
       quantity_in_stock: null, // Corrected variable name
     };
   },
-  // async mounted() {
-  //   // Fetch categories when the component is mounted
-  //   await this.fetchCategories();
-  // },
+  async mounted() {
+    // Fetch categories when the component is mounted
+    try {
+      await this.fetchCategories();
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  },
 
   methods: {
     showAlert(message) {
@@ -117,34 +145,71 @@ export default {
       // For example, using a toast library or a modal
       console.error("Alert:", message);
     },
-    // async fetchCategories() {
-    //   try {
-    //     const response = await axios.get(
-    //       "https://ecommerce.hyperzod.dev/api/categories"
-    //     );
-    //     this.categories = response.data;
-    //   } catch (error) {
-    //     console.error("API Error:", error);
-    //     this.showAlert("Can't fetch categories");
-    //   }
-    // },
+    async fetchCategories() {
+      try {
+        const response = await axios.get(
+          "https://ecommerce.hyperzod.dev/api/categories"
+        );
+        this.categories = response.data.data;
+      } catch (error) {
+        console.error("API Error:", error);
+        this.showAlert("Can't fetch categories");
+      }
+    },
+    handleImageUpload(event) {
+      const file = event.target.files[0];
+
+      if (file) {
+        this.selectedImage = file;
+        // Create a FormData object to send the file
+        // const formData = new FormData();
+        // formData.append("image", file);
+
+        // // Use axios to upload the image
+        // console.log(formData)
+        // axios
+        //   .post(this.baseURL, formData, {
+        //     headers: {
+        //       "Content-Type": "multipart/form-data",
+        //     },
+        //   })
+        //   .then((response) => {
+        //     // Handle the response after image upload if needed
+        //     console.log("Image upload response:", response.data);
+        //     const imageUrl = response.data.data.url;
+        //     console.log(imageUrl);
+
+        //     // Now you can use the imageUrl as needed, e.g., save it to your product data
+        //     this.image = imageUrl;
+        //   })
+        //   .catch((error) => {
+        //     console.error("Image upload error:", error);
+        //   });
+      }
+    },
+    openImageInput() {
+      this.$refs.imageInput.click();
+    },
     async addProduct() {
       try {
-        const response = await axios.post(this.baseURL, {
-          category_id: this.category_id,
-          name: this.productName,
-          description: this.description,
-          price: this.price,
-          quantity_in_stock: this.quantity_in_stock,
-        });
+        const formData = new FormData();
+        formData.append("category_id", this.category_id);
+        formData.append("name", this.productName);
+        formData.append("description", this.description);
+        formData.append("image", this.selectedImage);
+        formData.append("price", this.price);
+        formData.append("quantity_in_stock", this.quantity_in_stock);
+        const response = await axios.post(this.baseURL, formData);
 
         if (response.data.success) {
+          window.alert("New product added successfully");
           // Assuming the API response contains the newly added product
 
           // Clear input fields after successfully adding a new product
           this.productName = "";
           this.description = "";
           this.price = null;
+          this.image = null;
           this.quantity_in_stock = null;
           this.$router.push("/admin/product/manage");
         } else {

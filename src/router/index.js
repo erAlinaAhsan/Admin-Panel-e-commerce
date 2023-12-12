@@ -35,13 +35,13 @@ var appname = " - Qart Dashboard Admin Template";
 
 const routes = [
   // Routes
-  // {
-  //   path: '/',
-  //   beforeEnter: (to, from, next) => {
-  //     // Redirect to /dashboard
-  //     next('/dashboard')
-  //   }
-  // },
+  {
+    path: '/',
+    beforeEnter: (to, from, next) => {
+      // Redirect to /dashboard
+      next('/dashboard')
+    }
+  },
   {
     path: "/login",
     name: "Login",
@@ -201,17 +201,17 @@ const router = createRouter({
   linkExactActiveClass: "exact-active",
 });
 
-// router.beforeEach((to, from, next) => {
-//   document.title = to.meta.title;
-//   if (to.matched.some(record => record.meta.requiresAuth)) {
-//     if (localStorage.getItem("authToken") === null) {
-//       next({ name: 'Login' })
-//     } else {
-//       next();
-//     }
-//   } else {
-//     next() // does not require auth, make sure to always call next()!
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (localStorage.getItem("authToken") === null) {
+      next({ name: 'Login' })
+    } else {
+      next();
+    }
+  } else {
+    next() // does not require auth, make sure to always call next()!
+  }
+});
 
 export default router;

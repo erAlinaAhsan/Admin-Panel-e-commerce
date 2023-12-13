@@ -36,119 +36,145 @@
       v-if="products && products.length > 0"
       class="flex justify-center w-full relative overflow-x-auto"
     >
-      <div
-        class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg"
-      >
-        <table class="min-w-full">
-          <thead
-            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-          >
-            <tr>
-              <!-- <th
+      <div v-if="loading">
+        <vue-loading-skeleton
+          :count="5"
+          :width="['20%', '20%', '20%', '15%', '10%', '15%']"
+          :height="20"
+          :border-radius="4"
+          :background-color="'#f0f0f0'"
+          animation="wave"
+        ></vue-loading-skeleton>
+      </div>
+      <div v-else>
+        <div
+          class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg"
+        >
+          <table class="min-w-full">
+            <thead
+              class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+            >
+              <tr>
+                <!-- <th
                 class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
               >
                 Cat_Id
               </th> -->
-              <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Id
+                </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Name
+                </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Description
+                </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Image
+                </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Price
+                </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Quantity
+                </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                >
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white">
+              <tr
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                v-for="product in products"
+                :key="product.id"
               >
-                Id
-              </th>
-              <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-              >
-                Name
-              </th>
-              <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-              >
-                Description
-              </th>
-              <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-              >
-                Image
-              </th>
-              <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-              >
-                Price
-              </th>
-              <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-              >
-                Quantity
-              </th>
-              <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-              >
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody class="bg-white">
-            <tr
-              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-              v-for="product in products"
-              :key="product.id"
-            >
-              <!-- <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <!-- <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
                 <span class="text-sm leading-5 text-blue-900">{{
                   product.category_id
                 }}</span>
               </td> -->
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-                <span class="text-sm leading-5 text-blue-900">{{
-                  product.id
-                }}</span>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-                <span class="text-sm leading-5 text-blue-900">{{
-                  product.name
-                }}</span>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-                <span class="text-sm leading-5 text-blue-900">{{
-                  product.description
-                }}</span>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-                <img
-                  v-if="product.image"
-                  :src="product.image"
-                  alt="Product Image"
-                  class="max-w-full h-12"
-                  @error="handleImageError"
-                />
-              </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <span class="text-sm leading-5 text-blue-900">{{
+                    product.id
+                  }}</span>
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <span class="text-sm leading-5 text-blue-900">{{
+                    product.name
+                  }}</span>
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <span class="text-sm leading-5 text-blue-900">{{
+                    product.description
+                  }}</span>
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <img
+                    v-if="product.image"
+                    :src="product.image"
+                    alt="Product Image"
+                    class="max-w-full h-12"
+                    @error="handleImageError"
+                  />
+                </td>
 
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-                <span class="text-sm leading-5 text-blue-900">{{
-                  product.price
-                }}</span>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-                <span class="text-sm leading-5 text-blue-900">{{
-                  product.quantity_in_stock
-                }}</span>
-              </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <span class="text-sm leading-5 text-blue-900">{{
+                    product.price
+                  }}</span>
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <span class="text-sm leading-5 text-blue-900">{{
+                    product.quantity_in_stock
+                  }}</span>
+                </td>
 
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-                <button @click="deleteProduct(product.id)">
-                  <i
-                    aria-hidden
-                    class="fa fa-trash cursor-pointer text-red-500"
-                  ></i>
-                </button>
-              </td>
-              <!-- <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                >
+                  <button @click="deleteProduct(product.id)">
+                    <i
+                      aria-hidden
+                      class="fa fa-trash cursor-pointer text-red-500"
+                    ></i>
+                  </button>
+                </td>
+                <!-- <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
               <button @click="openEditModal(product)">
                 <i class="fa fa-pen pointer text-green-500"></i>
               </button>
             </td> -->
-            </tr>
-          </tbody>
-        </table>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -156,10 +182,13 @@
 <script>
 // Import Font Awesome CSS in your JavaScript or CSS file
 import "@fortawesome/fontawesome-free/css/all.css";
+import VueLoadingSkeleton from "vue-loading-skeleton";
+
 import axios from "axios";
 export default {
   data() {
     return {
+      loading: true,
       baseURL: "https://ecommerce.hyperzod.dev/api/admin/products",
       products: [],
       category_id: null,
@@ -170,6 +199,9 @@ export default {
       image: null,
       quantity_in_stock: null,
     };
+  },
+  components: {
+    VueLoadingSkeleton,
   },
   methods: {
     handleImageError(event) {
@@ -255,8 +287,10 @@ export default {
         const response = await axios.get(this.baseURL);
         console.log(response);
         this.products = response.data.data;
+        this.loading = false;
       } catch (error) {
         console.error("API Error:", error);
+        this.loading = false;
       }
     },
   },

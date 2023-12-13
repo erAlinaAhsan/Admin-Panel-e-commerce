@@ -84,7 +84,7 @@ export default {
           this.setAdminDetails(response.data);
           console.log(response.data);
         } else {
-          return <router-link to="/login"></router-link>;
+          this.$router.push("/login");
         }
       } catch (error) {
         console.error("API Error:", error);

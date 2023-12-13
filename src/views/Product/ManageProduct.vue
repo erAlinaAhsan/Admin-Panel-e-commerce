@@ -118,6 +118,7 @@
                   :src="product.image"
                   alt="Product Image"
                   class="max-w-full h-12"
+                  @error="handleImageError"
                 />
               </td>
 
@@ -171,6 +172,10 @@ export default {
     };
   },
   methods: {
+    handleImageError(event) {
+      // Replace broken image with a placeholder
+      event.target.src = require("@/assets/plc.png");
+    },
     // async openEditModal(product) {
     //   await this.fetchProducts();
     //   this.showEditModal = true;

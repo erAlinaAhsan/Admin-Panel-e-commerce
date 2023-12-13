@@ -32,7 +32,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
-
+import { mapGetters, mapActions } from "vuex";
 import axios from "axios";
 import Scrollbar from "smooth-scrollbar";
 
@@ -45,17 +45,52 @@ export default {
       sidebar: false,
     };
   },
-
+  computed: {
+    ...mapGetters(["getAdminDetails"]),
+  },
   components: {
     Header,
     Footer,
     Sidebar,
   },
+  created() {
+    // console.log(this.getCount);
+    // this.updateCount(1000);
+    // console.log(this.getCount);
+    if (!this.getAdminDetails) {
+      this.fetchDetails();
+    }
+  },
 
   methods: {
+    ...mapActions(["setAdminDetails"]),
     open() {
       this.sidebar = true;
     },
+    async fetchDetails() {
+      try {
+        const token = localStorage.getItem("authToken");
+
+        if (token) {
+          const response = await axios.get(
+            "https://ecommerce.hyperzod.dev/api/admin/"
+            // {
+            //   headers: {
+            //     Authorization: `Bearer ${token}`,
+            //   },
+            // }
+          );
+
+          this.setAdminDetails(response.data);
+          console.log(response.data);
+        } else {
+          return <router-link to="/login"></router-link>;
+        }
+      } catch (error) {
+        console.error("API Error:", error);
+      }
+    },
+
     close() {
       this.sidebar = false;
     },

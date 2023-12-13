@@ -136,6 +136,9 @@ export default {
 
         if (token) {
           localStorage.setItem("authToken", token);
+          const adminDetails = response.data.user;
+          this.$store.dispatch("setAdminDetails", adminDetails);
+          console.log(response.data.user);
           this.redirectToDashboard();
         } else {
           this.showLoginErrorAlert();

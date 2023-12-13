@@ -161,30 +161,6 @@ export default {
 
       if (file) {
         this.selectedImage = file;
-        // Create a FormData object to send the file
-        // const formData = new FormData();
-        // formData.append("image", file);
-
-        // // Use axios to upload the image
-        // console.log(formData)
-        // axios
-        //   .post(this.baseURL, formData, {
-        //     headers: {
-        //       "Content-Type": "multipart/form-data",
-        //     },
-        //   })
-        //   .then((response) => {
-        //     // Handle the response after image upload if needed
-        //     console.log("Image upload response:", response.data);
-        //     const imageUrl = response.data.data.url;
-        //     console.log(imageUrl);
-
-        //     // Now you can use the imageUrl as needed, e.g., save it to your product data
-        //     this.image = imageUrl;
-        //   })
-        //   .catch((error) => {
-        //     console.error("Image upload error:", error);
-        //   });
       }
     },
     openImageInput() {

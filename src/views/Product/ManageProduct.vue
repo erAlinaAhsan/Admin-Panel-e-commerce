@@ -55,11 +55,6 @@
               class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
             >
               <tr>
-                <!-- <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
-              >
-                Cat_Id
-              </th> -->
                 <th
                   class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
                 >
@@ -208,52 +203,7 @@ export default {
       // Replace broken image with a placeholder
       event.target.src = require("@/assets/plc.png");
     },
-    // async openEditModal(product) {
-    //   await this.fetchProducts();
-    //   this.showEditModal = true;
-    //   this.editingProduct = { ...product };
-    // },
-    // closeEditModal() {
-    //   this.showEditModal = false;
-    //   this.editingProduct = {
-    //     id: null,
-    //     name: "",
-    //     description: "",
-    //     price: null,
-    //     quantity_in_stock: null,
-    //   };
-    // },
-    // async editProduct() {
-    //   try {
-    //     const response = await axios.put(
-    //       `${this.baseURL}/${this.editingProduct.id}`,
-    //       {
-    //         name: this.editingProduct.name,
-    //         description: this.editingProduct.description,
-    //         price: this.editingProduct.price,
-    //         quantity_in_stock: this.editingProduct.quantity_in_stock,
-    //       }
-    //     );
-    //     if (response.data.success) {
-    //       // Assuming the API response contains the updated category
-    //       const updatedProduct = response.data.data;
-    //       // Update the category in the list
-    //       const index = this.products.findIndex(
-    //         (product) => product.id === updatedProduct.id
-    //       );
-    //       if (index !== -1) {
-    //         this.products.splice(index, 1, updatedProduct);
-    //       }
-    //       // Close the modal after editing
-    //       this.closeEditModal();
-    //     } else {
-    //       this.showAlert("Unable to edit product");
-    //     }
-    //   } catch (error) {
-    //     console.error("API Error:", error);
-    //     this.showAlert("Can't connect to the server");
-    //   }
-    // },
+   
 
     async deleteProduct(productId) {
       try {

@@ -75,68 +75,6 @@
         >
           <Icon icon="ri:moon-fill" />
         </button>
-        <!-- btn notification -->
-        <button
-          @click="notifToggle"
-          class="mr-5 text-2xl text-gray-500 relative"
-        >
-          <i
-            class="bg-red-500 rounded-full p-1.5 border border-white dark:border-gray-700 -mt-1 absolute"
-          ></i>
-          <Icon icon="clarity:notification-line" />
-        </button>
-
-        <transition name="fade">
-          <div
-            id="notificaitons"
-            v-show="notification"
-            class="block absolute lg:right-56 right-28 mt-12 z-50 w-96 border dark:border-gray-700 bg-white dark:bg-gray-800 rounded divide-y dark:divide-gray-700 divide-gray-100 shadow"
-          >
-            <!-- head notification -->
-            <div
-              class="flex justify-between p-3 text-gray-800 dark:text-gray-300"
-            >
-              <h2>Notifications</h2>
-              <button class="text-blue-500 text-sm">Mark all as Read</button>
-            </div>
-            <div class="p-5 text-center" v-if="!notifList.length">
-              <p class="text-gray-800 dark:text-gray-300">
-                No notifications yet.
-              </p>
-            </div>
-            <div
-              class="p-2 pl-3 w-full"
-              v-for="(item, index) in notifList"
-              :key="index"
-            >
-              <div class="flex gap-5">
-                <div>
-                  <img
-                    class="w-9 rounded-full"
-                    :src="imageAssets(item.image)"
-                    alt=""
-                  />
-                </div>
-                <div class="mt-1">
-                  <div class="flex gap-3">
-                    <h2 class="dark:text-gray-200">{{ item.name }}</h2>
-                    <p class="dark:text-gray-500 text-gray-400 text-xs">
-                      {{ limitText(item.message) }}
-                    </p>
-                  </div>
-                  <p class="text-sm dark:text-gray-500 text-gray-400">
-                    {{ item.hours }}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="p-2">
-              <button class="w-full p-2 text-gray-800 dark:text-gray-300">
-                View All
-              </button>
-            </div>
-          </div>
-        </transition>
 
         <button @blur="menuToggleBlur" @click="menuToggle">
           <div class="user-avatar flex p-1 cursor-pointer rounded-md">

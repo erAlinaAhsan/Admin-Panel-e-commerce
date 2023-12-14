@@ -58,7 +58,7 @@ export default {
     // this.updateCount(1000);
     // console.log(this.getCount);
     if (!this.getAdminDetails) {
-      this.fetchDetails();
+      this.fetchAdminDetails();
     }
   },
 
@@ -67,27 +67,51 @@ export default {
     open() {
       this.sidebar = true;
     },
-    async fetchDetails() {
+    async fetchAdminDetails() {
       try {
         const token = localStorage.getItem("authToken");
 
         if (token) {
           const response = await axios.get(
-            "https://ecommerce.hyperzod.dev/api/admin/"
-            // {
-            //   headers: {
-            //     Authorization: `Bearer ${token}`,
-            //   },
-            // }
+            "https://ecommerce.hyperzod.dev/api/admin/me",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
           );
 
           this.setAdminDetails(response.data);
           console.log(response.data);
         } else {
+          await this.logout();
           this.$router.push("/login");
         }
       } catch (error) {
         console.error("API Error:", error);
+      }
+    },
+    async logout() {
+      try {
+        const token = localStorage.getItem("authToken");
+
+        if (token) {
+          // Call your logout API here, replace the URL with your actual logout endpoint
+          await axios.post(
+            "https://ecommerce.hyperzod.dev/api/admin/logout",
+            null,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          // Clear the token from local storage or any other cleanup steps
+          localStorage.removeItem("authToken");
+        }
+      } catch (error) {
+        console.error("Logout Error:", error);
       }
     },
 

@@ -185,47 +185,17 @@ export default {
   },
 
   methods: {
-    async fetchTotalCategories() {
+    async fetchData() {
       try {
         const response = await axios.get(
-          "https://ecommerce.hyperzod.dev/api/admin/categories"
+          "https://ecommerce.hyperzod.dev/api/admin/dashboard"
         );
-        this.totalCategories = response.data.data.length; // Assuming the API returns an array of categories
-      } catch (error) {
-        console.error("API Error:", error);
-      }
-    },
 
-    // Similar methods for other APIs
-
-    async fetchTotalProducts() {
-      try {
-        const response = await axios.get(
-          "https://ecommerce.hyperzod.dev/api/admin/products"
-        );
-        this.totalProducts = response.data.data.length;
-      } catch (error) {
-        console.error("API Error:", error);
-      }
-    },
-
-    async fetchTotalCustomers() {
-      try {
-        const response = await axios.get(
-          "https://ecommerce.hyperzod.dev/api/admin/user"
-        );
-        this.totalCustomers = response.data.length;
-      } catch (error) {
-        console.error("API Error:", error);
-      }
-    },
-
-    async fetchTotalOrders() {
-      try {
-        const response = await axios.get(
-          "https://ecommerce.hyperzod.dev/api/admin/orders"
-        );
-        this.totalOrders = response.data.length;
+        // Assuming the API response has properties for each count
+        this.totalCategories = response.data.data.categories;
+        this.totalProducts = response.data.data.products;
+        this.totalCustomers = response.data.data.user_count;
+        this.totalOrders = response.data.data.order_count;
       } catch (error) {
         console.error("API Error:", error);
       }
@@ -233,13 +203,10 @@ export default {
   },
 
   mounted() {
-    this.fetchTotalCategories();
-    this.fetchTotalProducts();
-    this.fetchTotalCustomers();
-    this.fetchTotalOrders();
-    // You can call other methods here if needed
+    this.fetchData();
   },
 };
 </script>
+
 
  

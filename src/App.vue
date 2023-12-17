@@ -84,36 +84,9 @@ export default {
           this.setAdminDetails(response.data);
           console.log(response.data);
         } else {
-          await this.logout();
-          // this.$router.push("/login");
         }
       } catch (error) {
         console.error("API Error:", error);
-      }
-    },
-    async logout() {
-      try {
-        console.log("Before logout");
-        const token = localStorage.getItem("authToken");
-
-        if (token) {
-          // Call your logout API here, replace the URL with your actual logout endpoint
-          await axios.post(
-            "https://ecommerce.hyperzod.dev/api/admin/logout",
-            {},
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-
-          // Clear the token from local storage or any other cleanup steps
-          localStorage.removeItem("authToken");
-        }
-        console.log("After logout");
-      } catch (error) {
-        console.error("Logout Error:", error);
       }
     },
 

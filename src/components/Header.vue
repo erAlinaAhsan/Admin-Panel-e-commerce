@@ -128,12 +128,11 @@
               > -->
 
             <div class="py-1">
-              <a
-                href="#"
+              <button
                 class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white"
-                @click="$router.push('/login')"
-                >Log out</a
               >
+                Log out
+              </button>
             </div>
           </div>
         </transition>
@@ -146,7 +145,7 @@
 import { Icon } from "@iconify/vue";
 import { fullscreen } from "@/helper/fullscreen";
 import { setDarkMode, loadDarkMode } from "@/helper/theme";
-
+import axios from "axios";
 export default {
   props: {
     name: String,
@@ -204,21 +203,37 @@ export default {
     menuToggle: function () {
       this.menu = !this.menu;
     },
-    handleLogout() {
-      // Clear the stored token and redirect to the login page
-      localStorage.removeItem("authToken");
-      this.$router.push("/login");
-    },
 
-    menuToggleBlur: function () {
+    menuToggleBlur: async function () {
       this.menu = false;
       const confirmLogout = confirm("Are you sure you want to log out?");
       if (confirmLogout) {
-        // Clear the stored token and redirect to the login page
-        localStorage.removeItem("authToken");
-        this.$router.push("/login");
+        const token = localStorage.getItem("authToken");
+        if (token) {
+          try {
+            // Call your logout API here, replace the URL with your actual logout endpoint
+            await axios.post(
+              "https://ecommerce.hyperzod.dev/api/admin/logout",
+              {},
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
+
+            // Clear the token from local storage or any other cleanup steps
+            localStorage.removeItem("authToken");
+
+            // Redirect to the login page
+            this.$router.push("/login");
+          } catch (error) {
+            console.error("Logout Error:", error);
+          }
+        }
       }
     },
+
     notifToggle: function () {
       this.notification = !this.notification;
     },

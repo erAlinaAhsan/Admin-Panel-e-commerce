@@ -11,7 +11,7 @@
     class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8"
   >
     <div
-      class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
+      class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8"
     >
       <div class="flex justify-between">
         <h1
@@ -45,7 +45,7 @@
                 Price
               </th>
               <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider hidden md:table-cell"
               >
                 Delivery_Address
               </th>
@@ -55,7 +55,7 @@
                 Payment Status
               </th>
               <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider hidden md:table-cell"
               >
                 Action
               </th>
@@ -78,7 +78,7 @@
                 }}</span>
               </td>
               <td
-                class="px-6 py-4 whitespace-no-wrap text-gray-400 border-b border-gray-300"
+                class="px-6 py-4 whitespace-no-wrap text-gray-400 border-b border-gray-300 hidden md:table-cell"
               >
                 <span class="address">{{ order.delivery_address }}</span>
               </td>
@@ -107,7 +107,9 @@
                   </span>
                 </span>
               </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+              <td
+                class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 hidden md:table-cell"
+              >
                 <button @click="deleteOrder(order.id)">
                   <i
                     aria-hidden

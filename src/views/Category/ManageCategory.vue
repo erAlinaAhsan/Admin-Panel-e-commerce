@@ -16,7 +16,9 @@
         Manage Categories
       </h1>
     </div>
-    <div class="flex justify-end items-center mr-8 mb-5">
+    <div
+      class="flex justify-end md:justify-end items-center md:items-end mr-8 mb-5"
+    >
       <router-link to="/admin/category/add">
         <button
           class="hover:bg-indigo-400 text-white px-4 py-2 rounded bg-indigo-600"
@@ -111,7 +113,7 @@
                 Name
               </th>
               <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider"
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-indigo-600 tracking-wider hidden md:table-cell"
               >
                 Description
               </th>
@@ -143,7 +145,9 @@
                   category.name
                 }}</span>
               </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+              <td
+                class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 hidden md:table-cell"
+              >
                 <span class="text-sm leading-5 text-blue-900">{{
                   category.description
                 }}</span>

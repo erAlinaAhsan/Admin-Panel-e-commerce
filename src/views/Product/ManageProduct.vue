@@ -56,17 +56,17 @@
             >
               <tr>
                 <th
-                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider hidden md:table-cell"
                 >
                   Id
                 </th>
                 <th
-                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider hidden md:table-cell"
                 >
                   Name
                 </th>
                 <th
-                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider hidden md:table-cell"
                 >
                   Description
                 </th>
@@ -81,7 +81,7 @@
                   Price
                 </th>
                 <th
-                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+                  class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider hidden md:table-cell"
                 >
                   Quantity
                 </th>
@@ -104,21 +104,21 @@
                 }}</span>
               </td> -->
                 <td
-                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 hidden md:table-cell"
                 >
                   <span class="text-sm leading-5 text-blue-900">{{
                     product.id
                   }}</span>
                 </td>
                 <td
-                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 hidden md:table-cell"
                 >
                   <span class="text-sm leading-5 text-blue-900">{{
                     product.name
                   }}</span>
                 </td>
                 <td
-                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 hidden md:table-cell"
                 >
                   <span class="text-sm leading-5 text-blue-900">{{
                     product.description
@@ -144,7 +144,7 @@
                   }}</span>
                 </td>
                 <td
-                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300"
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 hidden md:table-cell"
                 >
                   <span class="text-sm leading-5 text-blue-900">{{
                     product.quantity_in_stock
@@ -203,7 +203,6 @@ export default {
       // Replace broken image with a placeholder
       event.target.src = require("@/assets/plc.png");
     },
-   
 
     async deleteProduct(productId) {
       try {

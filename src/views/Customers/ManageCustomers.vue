@@ -4,7 +4,7 @@
   >
     <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css" />
     <div
-      class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12"
+      class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8"
     >
       <div class="flex justify-between">
         <h1
@@ -33,17 +33,17 @@
                 ID
               </th>
               <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
+                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider hidden md:table-cell"
               >
                 Name
               </th>
               <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
+                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider hidden md:table-cell"
               >
                 Email
               </th>
               <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
+                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider hidden md:table-cell"
               >
                 Phone
               </th>
@@ -54,7 +54,7 @@
                 Status
               </th>
               <th
-                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
+                class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider hidden md:table-cell"
               >
                 Role
               </th>
@@ -77,18 +77,20 @@
                   customer.id
                 }}</span>
               </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+              <td
+                class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 hidden md:table-cell"
+              >
                 <span class="text-sm leading-5 text-blue-900">{{
                   customer.name
                 }}</span>
               </td>
               <td
-                class="px-6 py-4 whitespace-no-wrap border-b text-gray-400 border-gray-300 text-sm leading-5"
+                class="px-6 py-4 whitespace-no-wrap border-b text-gray-400 border-gray-300 text-sm leading-5 hidden md:table-cell"
               >
                 <span class="email">{{ customer.email }}</span>
               </td>
               <td
-                class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-300 text-sm leading-5"
+                class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-300 text-sm leading-5 hidden md:table-cell"
               >
                 <span class="phone">{{ customer.phone }}</span>
               </td>
@@ -120,9 +122,10 @@
               </td>
 
               <td
-                class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-300 text-sm leading-5"
+                class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-300 text-sm leading-5 hidden md:table-cell"
               >
-                <span class="role">{{ customer.role }}</span>
+                <span v-if="customer.role === 0" class="role">User</span>
+                <span v-else-if="customer.role === 1" class="role">Admin</span>
               </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
                 <button @click="deleteCustomer(customer.id)">

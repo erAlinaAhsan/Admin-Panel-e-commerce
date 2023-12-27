@@ -87,12 +87,6 @@
                   >Remember me</label
                 >
               </div>
-              <button
-                @click="$router.push('/auth/forgot-password')"
-                class="text-sm dark:text-white hover:text-primary text-gray-700"
-              >
-                Forgot password?
-              </button>
             </div>
 
             <button

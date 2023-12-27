@@ -35,13 +35,13 @@ var appname = " - Qart Dashboard Admin Template";
 
 const routes = [
   // Routes
-  {
-    path: '/',
-    beforeEnter: (to, from, next) => {
-      // Redirect to /dashboard
-      next('/dashboard')
-    }
-  },
+  // {
+  //   path: '/',
+  //   beforeEnter: (to, from, next) => {
+  //     // Redirect to /dashboard
+  //     next('/dashboard')
+  //   }
+  // },
   {
     path: "/login",
     name: "Login",

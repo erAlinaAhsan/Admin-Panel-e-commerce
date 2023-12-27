@@ -70,24 +70,6 @@
                 >
               </div>
             </div>
-            <div class="flex justify-between">
-              <div class="flex items-start">
-                <div class="flex items-center h-5">
-                  <input
-                    id="remember"
-                    type="checkbox"
-                    value=""
-                    autocomplete="off"
-                    class="accent-primary focus:ring-4 cursor-pointer w-4 h-4 border border-gray-300 rounded dark:bg-gray-700 bg-gray-50 focus:ring-3 focus:ring-primary/30"
-                  />
-                </div>
-                <label
-                  for="remember"
-                  class="ml-2 text-sm cursor-pointer font-normal dark:text-white text-gray-500"
-                  >Remember me</label
-                >
-              </div>
-            </div>
 
             <button
               class="text-white bg-primary hover:bg-primary/80 p-3 w-full rounded-md"

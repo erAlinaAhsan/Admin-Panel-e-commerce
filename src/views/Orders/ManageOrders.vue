@@ -42,7 +42,17 @@
               <th
                 class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
               >
+                User_id
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+              >
                 Price
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
+              >
+                Status
               </th>
               <th
                 class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider hidden md:table-cell"
@@ -65,8 +75,13 @@
             <tr
               class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
               v-for="order in orders"
-              :key="order.user_id"
+              :key="order.id"
             >
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  order.id
+                }}</span>
+              </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
                 <span class="text-sm leading-5 text-blue-900">{{
                   order.user_id
@@ -75,6 +90,11 @@
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
                 <span class="text-sm leading-5 text-blue-900">{{
                   order.total_price
+                }}</span>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                <span class="text-sm leading-5 text-blue-900">{{
+                  order.status
                 }}</span>
               </td>
               <td
@@ -135,9 +155,12 @@ export default {
   data() {
     return {
       baseURL: "https://ecommerce.hyperzod.dev/api/admin/orders",
-      orders: [],
+      orders: "",
+      id: null,
       user_id: null,
       payment_status: null,
+      total_price: null,
+      status: null,
       delivery_address: "",
     };
   },
@@ -172,8 +195,22 @@ export default {
 
     async fetchOrders() {
       try {
-        const response = await axios.get(this.baseURL);
-        this.orders = response.data;
+        const authToken = localStorage.getItem("authToken");
+
+        if (!authToken) {
+          console.error("Auth token not found.");
+          return;
+        }
+
+        const response = await axios.get(this.baseURL, {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        console.log("API Response:", response.data);
+
+        this.orders = response.data[0].data;
+        console.log("response", response.data);
       } catch (error) {
         console.error("API Error:", error);
       }
